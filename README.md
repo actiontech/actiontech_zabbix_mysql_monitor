@@ -12,52 +12,52 @@ percona monitoring plugins zabbix的go语言版本
 |actiontech_zabbix_agent_template_percona_mysql_server.xml|zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.5.xml|
 |install.sh|无|
 
-- actiontech_get_mysql_stats_wrapper.sh 
-默认路径：/var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh
-备注：辅助脚本，可修改mysql用户名，密码等配置
-- actiontech_mysql_monitor
-默认路径：/var/lib/zabbix/actiontech/scripts/actiontech_mysql_monitor
+- actiontech_get_mysql_stats_wrapper.sh   
+默认路径：`/var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh`  
+备注：辅助脚本，可修改mysql用户名，密码等配置  
+- actiontech_mysql_monitor  
+默认路径：`/var/lib/zabbix/actiontech/scripts/actiontech_mysql_monitor`  
 备注：二进制可执行文件，路径保持与actiontech_get_mysql_stats_wrapper.sh 一致即可，可单独使用（actiontech_mysql_monitor --help）
-- userparameter_actiontech_mysql.conf
-默认路径：/var/lib/zabbix/actiontech/templates/userparameter_actiontech_mysql.conf
-备注：zabbix-agent的key配置文件
-- actiontech_zabbix_agent_template_percona_mysql_server.xml
-默认路径：/var/lib/zabbix/actiontech/templates/actiontech_zabbix_agent_template_percona_mysql_server.xml
-备注：模板文件，可导入zabbix
+- userparameter_actiontech_mysql.conf  
+默认路径：`/var/lib/zabbix/actiontech/templates/userparameter_actiontech_mysql.conf`  
+备注：zabbix-agent的key配置文件  
+- actiontech_zabbix_agent_template_percona_mysql_server.xml  
+默认路径：`/var/lib/zabbix/actiontech/templates/actiontech_zabbix_agent_template_percona_mysql_server.xml`  
+备注：模板文件，可导入zabbix  
 
 ## 2. 安装
-1. 安装zabbix-agent
-2. 解压打开tar包，执行install.sh
-//install.sh作用仅为拷贝文件至默认路径，可调整
-3. 创建采集mysql状态信息的用户
-mysql> grant process,select,replication client on *.* to zbx@’127.0.0.1’ identified by 'zabbix';
-配置用户免密码登陆
-vi ~zabbix/.my.cnf
-[client]
-user = zbx
-password = zabbix
-host = 127.0.0.1
-4. 修改配置
-vi /var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh
-//CMD="\$DIR/actiontech_mysql_monitor --host $HOST --user=zbx --pass=zabbix"
-5. 拷贝
-cp /var/lib/zabbix/actiontech/templates/userparameter_actiontech_mysql.conf /etc/zabbix/zabbix_agentd.d/
-//若未使用默认路径，请相应调整userparameter_actiontech_mysql.conf
-重启agent
-service zabbix-agent restart
-6. 测试数据采集
-/var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh ix
-//被监控mysql最大连接数
-sudo -u zabbix -H /var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh running-slave 
-//主从复制状态
-7. zabbix server导入配置模板actiontech_zabbix_agent_template_percona_mysql_server.xml， 添加主机、模板，开始监控
+1. 安装zabbix-agent  
+2. 执行install.sh  
+//install.sh作用仅为拷贝文件至默认路径，可调整  
+3. 创建采集mysql状态信息的用户  
+`mysql> grant process,select,replication client on *.* to zbx@’127.0.0.1’ identified by 'zabbix';`   
+配置用户免密码登陆  
+`vi ~zabbix/.my.cnf`  
+`[client]`   
+`user = zbx`     
+`password = zabbix`     
+`host = 127.0.0.1`    
+4. 修改配置  
+`vi /var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh`  
+`CMD="\$DIR/actiontech_mysql_monitor --host $HOST --user=zbx --pass=zabbix"`  
+5. 拷贝  
+`cp /var/lib/zabbix/actiontech/templates/userparameter_actiontech_mysql.conf /etc/zabbix/zabbix_agentd.d/`  
+//若未使用默认路径，请相应调整userparameter_actiontech_mysql.conf  
+重启agent  
+`service zabbix-agent restart`  
+6. 测试数据采集  
+`/var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh ix`  
+//被监控mysql最大连接数  
+`sudo -u zabbix -H /var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh running-slave`  
+//主从复制状态  
+7. zabbix server导入配置模板actiontech_zabbix_agent_template_percona_mysql_server.xml， 添加主机、模板，开始监控  
 
 
 
 ## 3. 所有item及其查询代码列表
-可使用方法举例：
-/var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh gg 或
-./actiontech_mysql_monitor -host=127.0.0.1 -user=zbx -pass=zabbix -items=gg
+可使用方法举例：  
+`/var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_wrapper.sh gg` 或  
+`./actiontech_mysql_monitor -host=127.0.0.1 -user=zbx -pass=zabbix -items=gg`  
 
 | item名        |查询代码   | 相关出处 |
 | ------------- | -----| ------ |
@@ -275,15 +275,15 @@ sudo -u zabbix -H /var/lib/zabbix/actiontech/scripts/actiontech_get_mysql_stats_
 
 ## 4. item取值与percona版本差异
 
- - innodb_transactions
-取值方法：SHOW /\*!50000 ENGINE*/ INNODB STATUS,可得行Trx id counter 861144，取值861144
+ - innodb_transactions  
+取值方法：SHOW /\*!50000 ENGINE*/ INNODB STATUS,可得行Trx id counter 861144，取值861144  
 percona将861144作为十六进制字符解析，actiontech版本将861144作为十进制字符解析
- - unpurged_txns：
-取值方法：SHOW /\*!50000 ENGINE*/ INNODB STATUS,可得行Purge done for trx's n:o < 861135 undo n:o < 0，取值861135
-percona将861135作为十六进制字符解析，actiontech版本将861135作为十进制字符解析
+ - unpurged_txns：  
+取值方法：SHOW /\*!50000 ENGINE*/ INNODB STATUS,可得行Purge done for trx's n:o < 861135 undo n:o < 0，取值861135  
+percona将861135作为十六进制字符解析，actiontech版本将861135作为十进制字符解析  
 
 ## 5. trigger列表
-注：以下列表未列出trigger依赖，详情可见actiontech_zabbix_agent_template_percona_mysql_server.xml
+注：以下列表未列出trigger依赖，详情可见actiontech_zabbix_agent_template_percona_mysql_server.xml  
 
 | trigger名        |触发器表达式   |
 | ------------- | -----| 
@@ -306,3 +306,5 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
 - 暂不支持mysql ssl连接方式
 - 不完全支持Percona Server or MariaDB
 
+## 8. issues
+- 欢迎在issues中提出任何使用问题
