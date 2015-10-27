@@ -10,7 +10,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Key-read-requests</key>
+            <key>MySQL.[Key_read_requests]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -22,7 +22,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Key-reads</key>
+            <key>MySQL.[Key_reads]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -34,7 +34,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Key-write-requests</key>
+            <key>MySQL.[Key_write_requests]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -46,7 +46,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Key-writes</key>
+            <key>MySQL.[Key_writes]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -76,7 +76,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.key-buffer-size</key>
+            <key>MySQL.[key_buffer_size]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -88,7 +88,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Key-buf-bytes-used</key>
+            <key>MySQL.[Key_buf_bytes_used]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -100,7 +100,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Key-buf-bytes-unflushed</key>
+            <key>MySQL.[Key_buf_bytes_unflushed]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -130,7 +130,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pool-size</key>
+            <key>MySQL.[pool_size]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -142,7 +142,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.database-pages</key>
+            <key>MySQL.[database_pages]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -154,7 +154,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.free-pages</key>
+            <key>MySQL.[free_pages]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -166,7 +166,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.modified-pages</key>
+            <key>MySQL.[modified_pages]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -196,7 +196,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.file-reads</key>
+            <key>MySQL.[file_reads]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -208,7 +208,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.file-writes</key>
+            <key>MySQL.[file_writes]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -220,7 +220,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.log-writes</key>
+            <key>MySQL.[log_writes]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -232,7 +232,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.file-fsyncs</key>
+            <key>MySQL.[file_fsyncs]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -262,7 +262,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.ibuf-inserts</key>
+            <key>MySQL.[ibuf_inserts]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -274,7 +274,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.ibuf-merged</key>
+            <key>MySQL.[ibuf_merged]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -286,7 +286,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.ibuf-merges</key>
+            <key>MySQL.[ibuf_merges]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -316,7 +316,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.ibuf-cell-count</key>
+            <key>MySQL.[ibuf_cell_count]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -328,7 +328,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.ibuf-used-cells</key>
+            <key>MySQL.[ibuf_used_cells]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -340,7 +340,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.ibuf-free-cells</key>
+            <key>MySQL.[ibuf_free_cells]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -370,7 +370,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.spin-rounds</key>
+            <key>MySQL.[spin_rounds]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -382,7 +382,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.spin-waits</key>
+            <key>MySQL.[spin_waits]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -394,7 +394,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.os-waits</key>
+            <key>MySQL.[os_waits]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -424,7 +424,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.rows-read</key>
+            <key>MySQL.[rows_read]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -436,7 +436,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.rows-deleted</key>
+            <key>MySQL.[rows_deleted]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -448,7 +448,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.rows-updated</key>
+            <key>MySQL.[rows_updated]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -460,7 +460,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.rows-inserted</key>
+            <key>MySQL.[rows_inserted]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -490,7 +490,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Table-locks-immediate</key>
+            <key>MySQL.[Table_locks_immediate]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -502,7 +502,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Table-locks-immediate</key>
+            <key>MySQL.[Table_locks_immediate]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -514,7 +514,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Table-locks-waited</key>
+            <key>MySQL.[Table_locks_waited]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -526,7 +526,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Slow-queries</key>
+            <key>MySQL.[Slow_queries]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -556,7 +556,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.max-connections</key>
+            <key>MySQL.[max_connections]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -568,7 +568,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Max-used-connections</key>
+            <key>MySQL.[Max_used_connections]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -580,7 +580,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Aborted-clients</key>
+            <key>MySQL.[Aborted_clients]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -592,7 +592,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Aborted-connects</key>
+            <key>MySQL.[Aborted_connects]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -604,7 +604,7 @@
           <drawtype>2</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Threads-connected</key>
+            <key>MySQL.[Threads_connected]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -616,7 +616,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Connections</key>
+            <key>MySQL.[Connections]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -646,7 +646,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.slave-running</key>
+            <key>MySQL.[slave_running]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -658,7 +658,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.slave-stopped</key>
+            <key>MySQL.[slave_stopped]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -670,7 +670,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.slave-lag</key>
+            <key>MySQL.[slave_lag]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -682,7 +682,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Slave-open-temp-tables</key>
+            <key>MySQL.[Slave_open_temp_tables]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -694,7 +694,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Slave-retried-transactions</key>
+            <key>MySQL.[Slave_retried_transactions]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -724,7 +724,7 @@
           <drawtype>2</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-queries-in-cache</key>
+            <key>MySQL.[Qcache_queries_in_cache]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -736,7 +736,7 @@
           <drawtype>2</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-hits</key>
+            <key>MySQL.[Qcache_hits]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -748,7 +748,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-inserts</key>
+            <key>MySQL.[Qcache_inserts]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -760,7 +760,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-not-cached</key>
+            <key>MySQL.[Qcache_not_cached]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -772,7 +772,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-lowmem-prunes</key>
+            <key>MySQL.[Qcache_lowmem_prunes]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -802,7 +802,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.query-cache-size</key>
+            <key>MySQL.[query_cache_size]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -814,7 +814,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-free-memory</key>
+            <key>MySQL.[Qcache_free_memory]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -826,7 +826,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-total-blocks</key>
+            <key>MySQL.[Qcache_total_blocks]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -838,7 +838,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Qcache-free-blocks</key>
+            <key>MySQL.[Qcache_free_blocks]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -868,7 +868,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Questions</key>
+            <key>MySQL.[Questions]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -880,7 +880,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-select</key>
+            <key>MySQL.[Com_select]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -892,7 +892,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-delete</key>
+            <key>MySQL.[Com_delete]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -904,7 +904,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-insert</key>
+            <key>MySQL.[Com_insert]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -916,7 +916,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-update</key>
+            <key>MySQL.[Com_update]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -928,7 +928,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-replace</key>
+            <key>MySQL.[Com_replace]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -940,7 +940,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-load</key>
+            <key>MySQL.[Com_load]</key>
           </item>
           <sortorder>6</sortorder>
           <type>0</type>
@@ -952,7 +952,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-delete-multi</key>
+            <key>MySQL.[Com_delete_multi]</key>
           </item>
           <sortorder>7</sortorder>
           <type>0</type>
@@ -964,7 +964,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-insert-select</key>
+            <key>MySQL.[Com_insert_select]</key>
           </item>
           <sortorder>8</sortorder>
           <type>0</type>
@@ -976,7 +976,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-update-multi</key>
+            <key>MySQL.[Com_update_multi]</key>
           </item>
           <sortorder>9</sortorder>
           <type>0</type>
@@ -988,7 +988,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Com-replace-select</key>
+            <key>MySQL.[Com_replace_select]</key>
           </item>
           <sortorder>10</sortorder>
           <type>0</type>
@@ -1018,7 +1018,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Select-full-join</key>
+            <key>MySQL.[Select_full_join]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1030,7 +1030,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Select-full-range-join</key>
+            <key>MySQL.[Select_full_range_join]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1042,7 +1042,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Select-range</key>
+            <key>MySQL.[Select_range]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1054,7 +1054,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Select-range-check</key>
+            <key>MySQL.[Select_range_check]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1066,7 +1066,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Select-scan</key>
+            <key>MySQL.[Select_scan]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -1096,7 +1096,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Sort-rows</key>
+            <key>MySQL.[Sort_rows]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1108,7 +1108,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Sort-range</key>
+            <key>MySQL.[Sort_range]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1120,7 +1120,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Sort-merge-passes</key>
+            <key>MySQL.[Sort_merge_passes]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1132,7 +1132,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Sort-scan</key>
+            <key>MySQL.[Sort_scan]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1162,7 +1162,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Created-tmp-tables</key>
+            <key>MySQL.[Created_tmp_tables]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1174,7 +1174,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Created-tmp-tables</key>
+            <key>MySQL.[Created_tmp_tables]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1186,7 +1186,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Created-tmp-disk-tables</key>
+            <key>MySQL.[Created_tmp_disk_tables]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1198,7 +1198,7 @@
           <drawtype>2</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Created-tmp-files</key>
+            <key>MySQL.[Created_tmp_files]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1228,7 +1228,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Bytes-sent</key>
+            <key>MySQL.[Bytes_sent]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1240,7 +1240,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Bytes-received</key>
+            <key>MySQL.[Bytes_received]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1270,7 +1270,7 @@
           <drawtype>2</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pages-created</key>
+            <key>MySQL.[pages_created]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1282,7 +1282,7 @@
           <drawtype>2</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pages-read</key>
+            <key>MySQL.[pages_read]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1294,7 +1294,7 @@
           <drawtype>2</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pages-written</key>
+            <key>MySQL.[pages_written]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1324,7 +1324,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-aio-log-ios</key>
+            <key>MySQL.[pending_aio_log_ios]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1336,7 +1336,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-aio-sync-ios</key>
+            <key>MySQL.[pending_aio_sync_ios]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1348,7 +1348,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-buf-pool-flushes</key>
+            <key>MySQL.[pending_buf_pool_flushes]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1360,7 +1360,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-chkp-writes</key>
+            <key>MySQL.[pending_chkp_writes]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1372,7 +1372,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-ibuf-aio-reads</key>
+            <key>MySQL.[pending_ibuf_aio_reads]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -1384,7 +1384,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-log-flushes</key>
+            <key>MySQL.[pending_log_flushes]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -1396,7 +1396,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-log-writes</key>
+            <key>MySQL.[pending_log_writes]</key>
           </item>
           <sortorder>6</sortorder>
           <type>0</type>
@@ -1408,7 +1408,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-normal-aio-reads</key>
+            <key>MySQL.[pending_normal_aio_reads]</key>
           </item>
           <sortorder>7</sortorder>
           <type>0</type>
@@ -1420,7 +1420,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pending-normal-aio-writes</key>
+            <key>MySQL.[pending_normal_aio_writes]</key>
           </item>
           <sortorder>8</sortorder>
           <type>0</type>
@@ -1450,7 +1450,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-log-buffer-size</key>
+            <key>MySQL.[innodb_log_buffer_size]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1462,7 +1462,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.log-bytes-written</key>
+            <key>MySQL.[log_bytes_written]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1474,7 +1474,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.log-bytes-flushed</key>
+            <key>MySQL.[log_bytes_flushed]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1486,7 +1486,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.unflushed-log</key>
+            <key>MySQL.[unflushed_log]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1516,7 +1516,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Binlog-cache-use</key>
+            <key>MySQL.[Binlog_cache_use]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1528,7 +1528,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Binlog-cache-disk-use</key>
+            <key>MySQL.[Binlog_cache_disk_use]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1540,7 +1540,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.binary-log-space</key>
+            <key>MySQL.[binary_log_space]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1552,7 +1552,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.relay-log-space</key>
+            <key>MySQL.[relay_log_space]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1582,7 +1582,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-transactions</key>
+            <key>MySQL.[innodb_transactions]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1594,7 +1594,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.history-list</key>
+            <key>MySQL.[history_list]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1624,7 +1624,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.active-transactions</key>
+            <key>MySQL.[active_transactions]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1636,7 +1636,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.locked-transactions</key>
+            <key>MySQL.[locked_transactions]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1648,7 +1648,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.current-transactions</key>
+            <key>MySQL.[current_transactions]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1660,7 +1660,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.read-views</key>
+            <key>MySQL.[read_views]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1690,7 +1690,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.table-cache</key>
+            <key>MySQL.[table_cache]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1702,7 +1702,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Open-tables</key>
+            <key>MySQL.[Open_tables]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1714,7 +1714,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Open-files</key>
+            <key>MySQL.[Open_files]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1726,7 +1726,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Opened-tables</key>
+            <key>MySQL.[Opened_tables]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1756,7 +1756,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.thread-cache-size</key>
+            <key>MySQL.[thread_cache_size]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1768,7 +1768,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Threads-connected</key>
+            <key>MySQL.[Threads_connected]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1780,7 +1780,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Threads-running</key>
+            <key>MySQL.[Threads_running]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1792,7 +1792,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Threads-created</key>
+            <key>MySQL.[Threads_created]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1804,7 +1804,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Threads-cached</key>
+            <key>MySQL.[Threads_cached]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -1834,7 +1834,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.total-mem-alloc</key>
+            <key>MySQL.[total_mem_alloc]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1846,7 +1846,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.additional-pool-alloc</key>
+            <key>MySQL.[additional_pool_alloc]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1876,7 +1876,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.hash-index-cells-total</key>
+            <key>MySQL.[hash_index_cells_total]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1888,7 +1888,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.hash-index-cells-used</key>
+            <key>MySQL.[hash_index_cells_used]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1918,7 +1918,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.adaptive-hash-memory</key>
+            <key>MySQL.[adaptive_hash_memory]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -1930,7 +1930,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.page-hash-memory</key>
+            <key>MySQL.[page_hash_memory]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -1942,7 +1942,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.dictionary-cache-memory</key>
+            <key>MySQL.[dictionary_cache_memory]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -1954,7 +1954,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.file-system-memory</key>
+            <key>MySQL.[file_system_memory]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -1966,7 +1966,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.lock-system-memory</key>
+            <key>MySQL.[lock_system_memory]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -1978,7 +1978,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.recovery-system-memory</key>
+            <key>MySQL.[recovery_system_memory]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -1990,7 +1990,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.thread-hash-memory</key>
+            <key>MySQL.[thread_hash_memory]</key>
           </item>
           <sortorder>6</sortorder>
           <type>0</type>
@@ -2020,7 +2020,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-tables-in-use</key>
+            <key>MySQL.[innodb_tables_in_use]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2032,7 +2032,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-locked-tables</key>
+            <key>MySQL.[innodb_locked_tables]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -2062,7 +2062,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-lock-wait-secs</key>
+            <key>MySQL.[innodb_lock_wait_secs]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2092,7 +2092,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-lock-structs</key>
+            <key>MySQL.[innodb_lock_structs]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2122,7 +2122,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.uncheckpointed-bytes</key>
+            <key>MySQL.[uncheckpointed_bytes]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2152,7 +2152,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Innodb-row-lock-time</key>
+            <key>MySQL.[Innodb_row_lock_time]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2182,7 +2182,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Innodb-row-lock-waits</key>
+            <key>MySQL.[Innodb_row_lock_waits]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2212,7 +2212,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-sem-waits</key>
+            <key>MySQL.[innodb_sem_waits]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2242,7 +2242,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.innodb-sem-wait-time-ms</key>
+            <key>MySQL.[innodb_sem_wait_time_ms]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2272,7 +2272,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-closing-tables</key>
+            <key>MySQL.[State_closing_tables]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2284,7 +2284,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-copying-to-tmp-table</key>
+            <key>MySQL.[State_copying_to_tmp_table]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -2296,7 +2296,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-end</key>
+            <key>MySQL.[State_end]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -2308,7 +2308,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-freeing-items</key>
+            <key>MySQL.[State_freeing_items]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -2320,7 +2320,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-init</key>
+            <key>MySQL.[State_init]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -2332,7 +2332,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-locked</key>
+            <key>MySQL.[State_locked]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -2344,7 +2344,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-login</key>
+            <key>MySQL.[State_login]</key>
           </item>
           <sortorder>6</sortorder>
           <type>0</type>
@@ -2356,7 +2356,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-preparing</key>
+            <key>MySQL.[State_preparing]</key>
           </item>
           <sortorder>7</sortorder>
           <type>0</type>
@@ -2368,7 +2368,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-reading-from-net</key>
+            <key>MySQL.[State_reading_from_net]</key>
           </item>
           <sortorder>8</sortorder>
           <type>0</type>
@@ -2380,7 +2380,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-sending-data</key>
+            <key>MySQL.[State_sending_data]</key>
           </item>
           <sortorder>9</sortorder>
           <type>0</type>
@@ -2392,7 +2392,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-sorting-result</key>
+            <key>MySQL.[State_sorting_result]</key>
           </item>
           <sortorder>10</sortorder>
           <type>0</type>
@@ -2404,7 +2404,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-statistics</key>
+            <key>MySQL.[State_statistics]</key>
           </item>
           <sortorder>11</sortorder>
           <type>0</type>
@@ -2416,7 +2416,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-updating</key>
+            <key>MySQL.[State_updating]</key>
           </item>
           <sortorder>12</sortorder>
           <type>0</type>
@@ -2428,7 +2428,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-writing-to-net</key>
+            <key>MySQL.[State_writing_to_net]</key>
           </item>
           <sortorder>13</sortorder>
           <type>0</type>
@@ -2440,7 +2440,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-none</key>
+            <key>MySQL.[State_none]</key>
           </item>
           <sortorder>14</sortorder>
           <type>0</type>
@@ -2452,7 +2452,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.State-other</key>
+            <key>MySQL.[State_other]</key>
           </item>
           <sortorder>15</sortorder>
           <type>0</type>
@@ -2482,7 +2482,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-commit</key>
+            <key>MySQL.[Handler_commit]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2494,7 +2494,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-rollback</key>
+            <key>MySQL.[Handler_rollback]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -2506,7 +2506,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-savepoint</key>
+            <key>MySQL.[Handler_savepoint]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -2518,7 +2518,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-savepoint-rollback</key>
+            <key>MySQL.[Handler_savepoint_rollback]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -2548,7 +2548,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-write</key>
+            <key>MySQL.[Handler_write]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2560,7 +2560,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-update</key>
+            <key>MySQL.[Handler_update]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -2572,7 +2572,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-delete</key>
+            <key>MySQL.[Handler_delete]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -2584,7 +2584,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-read-first</key>
+            <key>MySQL.[Handler_read_first]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -2596,7 +2596,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-read-key</key>
+            <key>MySQL.[Handler_read_key]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -2608,7 +2608,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-read-next</key>
+            <key>MySQL.[Handler_read_next]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -2620,7 +2620,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-read-prev</key>
+            <key>MySQL.[Handler_read_prev]</key>
           </item>
           <sortorder>6</sortorder>
           <type>0</type>
@@ -2632,7 +2632,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-read-rnd</key>
+            <key>MySQL.[Handler_read_rnd]</key>
           </item>
           <sortorder>7</sortorder>
           <type>0</type>
@@ -2644,7 +2644,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Handler-read-rnd-next</key>
+            <key>MySQL.[Handler_read_rnd_next]</key>
           </item>
           <sortorder>8</sortorder>
           <type>0</type>
@@ -2674,7 +2674,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-00</key>
+            <key>MySQL.[Query_time_count_00]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2686,7 +2686,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-01</key>
+            <key>MySQL.[Query_time_count_01]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -2698,7 +2698,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-02</key>
+            <key>MySQL.[Query_time_count_02]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -2710,7 +2710,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-03</key>
+            <key>MySQL.[Query_time_count_03]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -2722,7 +2722,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-04</key>
+            <key>MySQL.[Query_time_count_04]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -2734,7 +2734,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-05</key>
+            <key>MySQL.[Query_time_count_05]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -2746,7 +2746,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-06</key>
+            <key>MySQL.[Query_time_count_06]</key>
           </item>
           <sortorder>6</sortorder>
           <type>0</type>
@@ -2758,7 +2758,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-07</key>
+            <key>MySQL.[Query_time_count_07]</key>
           </item>
           <sortorder>7</sortorder>
           <type>0</type>
@@ -2770,7 +2770,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-08</key>
+            <key>MySQL.[Query_time_count_08]</key>
           </item>
           <sortorder>8</sortorder>
           <type>0</type>
@@ -2782,7 +2782,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-09</key>
+            <key>MySQL.[Query_time_count_09]</key>
           </item>
           <sortorder>9</sortorder>
           <type>0</type>
@@ -2794,7 +2794,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-10</key>
+            <key>MySQL.[Query_time_count_10]</key>
           </item>
           <sortorder>10</sortorder>
           <type>0</type>
@@ -2806,7 +2806,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-11</key>
+            <key>MySQL.[Query_time_count_11]</key>
           </item>
           <sortorder>11</sortorder>
           <type>0</type>
@@ -2818,7 +2818,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-12</key>
+            <key>MySQL.[Query_time_count_12]</key>
           </item>
           <sortorder>12</sortorder>
           <type>0</type>
@@ -2830,7 +2830,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-count-13</key>
+            <key>MySQL.[Query_time_count_13]</key>
           </item>
           <sortorder>13</sortorder>
           <type>0</type>
@@ -2860,7 +2860,7 @@
           <drawtype>1</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-00</key>
+            <key>MySQL.[Query_time_total_00]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -2872,7 +2872,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-01</key>
+            <key>MySQL.[Query_time_total_01]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -2884,7 +2884,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-02</key>
+            <key>MySQL.[Query_time_total_02]</key>
           </item>
           <sortorder>2</sortorder>
           <type>0</type>
@@ -2896,7 +2896,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-03</key>
+            <key>MySQL.[Query_time_total_03]</key>
           </item>
           <sortorder>3</sortorder>
           <type>0</type>
@@ -2908,7 +2908,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-04</key>
+            <key>MySQL.[Query_time_total_04]</key>
           </item>
           <sortorder>4</sortorder>
           <type>0</type>
@@ -2920,7 +2920,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-05</key>
+            <key>MySQL.[Query_time_total_05]</key>
           </item>
           <sortorder>5</sortorder>
           <type>0</type>
@@ -2932,7 +2932,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-06</key>
+            <key>MySQL.[Query_time_total_06]</key>
           </item>
           <sortorder>6</sortorder>
           <type>0</type>
@@ -2944,7 +2944,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-07</key>
+            <key>MySQL.[Query_time_total_07]</key>
           </item>
           <sortorder>7</sortorder>
           <type>0</type>
@@ -2956,7 +2956,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-08</key>
+            <key>MySQL.[Query_time_total_08]</key>
           </item>
           <sortorder>8</sortorder>
           <type>0</type>
@@ -2968,7 +2968,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-09</key>
+            <key>MySQL.[Query_time_total_09]</key>
           </item>
           <sortorder>9</sortorder>
           <type>0</type>
@@ -2980,7 +2980,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-10</key>
+            <key>MySQL.[Query_time_total_10]</key>
           </item>
           <sortorder>10</sortorder>
           <type>0</type>
@@ -2992,7 +2992,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-11</key>
+            <key>MySQL.[Query_time_total_11]</key>
           </item>
           <sortorder>11</sortorder>
           <type>0</type>
@@ -3004,7 +3004,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-12</key>
+            <key>MySQL.[Query_time_total_12]</key>
           </item>
           <sortorder>12</sortorder>
           <type>0</type>
@@ -3016,7 +3016,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.Query-time-total-13</key>
+            <key>MySQL.[Query_time_total_13]</key>
           </item>
           <sortorder>13</sortorder>
           <type>0</type>
@@ -3046,7 +3046,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pool-read-requests</key>
+            <key>MySQL.[pool_read_requests]</key>
           </item>
           <sortorder>0</sortorder>
           <type>0</type>
@@ -3058,7 +3058,7 @@
           <drawtype>0</drawtype>
           <item>
             <host>Actiontech MySQL Server Template</host>
-            <key>MySQL.pool-reads</key>
+            <key>MySQL.[pool_reads]</key>
           </item>
           <sortorder>1</sortorder>
           <type>0</type>
@@ -3806,9 +3806,9 @@
           <delay>300</delay>
           <delta>1</delta>
           <description>MySQL Key Write Requests</description>
-          <formula>-1</formula>
+          <formula>_1</formula>
           <history>90</history>
-          <key>MySQL.Key-write-requests</key>
+          <key>MySQL.[Key_write_requests]</key>
           <multiplier>1</multiplier>
           <name>Key Write Requests</name>
           <status>0</status>
@@ -3827,9 +3827,9 @@
           <delay>300</delay>
           <delta>1</delta>
           <description>MySQL Key Writes</description>
-          <formula>-1</formula>
+          <formula>_1</formula>
           <history>90</history>
-          <key>MySQL.Key-writes</key>
+          <key>MySQL.[Key_writes]</key>
           <multiplier>1</multiplier>
           <name>Key Writes</name>
           <status>0</status>
@@ -3850,7 +3850,7 @@
           <description>MySQL Key Read Requests</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Key-read-requests</key>
+          <key>MySQL.[Key_read_requests]</key>
           <multiplier>0</multiplier>
           <name>Key Read Requests</name>
           <status>0</status>
@@ -3871,7 +3871,7 @@
           <description>MySQL Key Reads</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Key-reads</key>
+          <key>MySQL.[Key_reads]</key>
           <multiplier>0</multiplier>
           <name>Key Reads</name>
           <status>0</status>
@@ -3892,7 +3892,7 @@
           <description>MySQL Key Buf Bytes Unflushed</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Key-buf-bytes-unflushed</key>
+          <key>MySQL.[Key_buf_bytes_unflushed]</key>
           <multiplier>0</multiplier>
           <name>Key Buf Bytes Unflushed</name>
           <status>0</status>
@@ -3913,7 +3913,7 @@
           <description>MySQL Key Buffer Size</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.key-buffer-size</key>
+          <key>MySQL.[key_buffer_size]</key>
           <multiplier>0</multiplier>
           <name>Key Buffer Size</name>
           <status>0</status>
@@ -3934,7 +3934,7 @@
           <description>MySQL Key Buf Bytes Used</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Key-buf-bytes-used</key>
+          <key>MySQL.[Key_buf_bytes_used]</key>
           <multiplier>0</multiplier>
           <name>Key Buf Bytes Used</name>
           <status>0</status>
@@ -3955,7 +3955,7 @@
           <description>MySQL Database Pages</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.database-pages</key>
+          <key>MySQL.[database_pages]</key>
           <multiplier>0</multiplier>
           <name>Database Pages</name>
           <status>0</status>
@@ -3976,7 +3976,7 @@
           <description>MySQL Free Pages</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.free-pages</key>
+          <key>MySQL.[free_pages]</key>
           <multiplier>0</multiplier>
           <name>Free Pages</name>
           <status>0</status>
@@ -3997,7 +3997,7 @@
           <description>MySQL Modified Pages</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.modified-pages</key>
+          <key>MySQL.[modified_pages]</key>
           <multiplier>0</multiplier>
           <name>Modified Pages</name>
           <status>0</status>
@@ -4018,7 +4018,7 @@
           <description>MySQL Pool Size</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pool-size</key>
+          <key>MySQL.[pool_size]</key>
           <multiplier>0</multiplier>
           <name>Pool Size</name>
           <status>0</status>
@@ -4039,7 +4039,7 @@
           <description>MySQL Log Writes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.log-writes</key>
+          <key>MySQL.[log_writes]</key>
           <multiplier>0</multiplier>
           <name>Log Writes</name>
           <status>0</status>
@@ -4060,7 +4060,7 @@
           <description>MySQL File Writes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.file-writes</key>
+          <key>MySQL.[file_writes]</key>
           <multiplier>0</multiplier>
           <name>File Writes</name>
           <status>0</status>
@@ -4081,7 +4081,7 @@
           <description>MySQL File Reads</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.file-reads</key>
+          <key>MySQL.[file_reads]</key>
           <multiplier>0</multiplier>
           <name>File Reads</name>
           <status>0</status>
@@ -4102,7 +4102,7 @@
           <description>MySQL File Fsyncs</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.file-fsyncs</key>
+          <key>MySQL.[file_fsyncs]</key>
           <multiplier>0</multiplier>
           <name>File Fsyncs</name>
           <status>0</status>
@@ -4123,7 +4123,7 @@
           <description>MySQL Ibuf Merges</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.ibuf-merges</key>
+          <key>MySQL.[ibuf_merges]</key>
           <multiplier>0</multiplier>
           <name>Ibuf Merges</name>
           <status>0</status>
@@ -4144,7 +4144,7 @@
           <description>MySQL Ibuf Merged</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.ibuf-merged</key>
+          <key>MySQL.[ibuf_merged]</key>
           <multiplier>0</multiplier>
           <name>Ibuf Merged</name>
           <status>0</status>
@@ -4165,7 +4165,7 @@
           <description>MySQL Ibuf Inserts</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.ibuf-inserts</key>
+          <key>MySQL.[ibuf_inserts]</key>
           <multiplier>0</multiplier>
           <name>Ibuf Inserts</name>
           <status>0</status>
@@ -4186,7 +4186,7 @@
           <description>MySQL Ibuf Free Cells</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.ibuf-free-cells</key>
+          <key>MySQL.[ibuf_free_cells]</key>
           <multiplier>0</multiplier>
           <name>Ibuf Free Cells</name>
           <status>0</status>
@@ -4207,7 +4207,7 @@
           <description>MySQL Ibuf Cell Count</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.ibuf-cell-count</key>
+          <key>MySQL.[ibuf_cell_count]</key>
           <multiplier>0</multiplier>
           <name>Ibuf Cell Count</name>
           <status>0</status>
@@ -4228,7 +4228,7 @@
           <description>MySQL Ibuf Used Cells</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.ibuf-used-cells</key>
+          <key>MySQL.[ibuf_used_cells]</key>
           <multiplier>0</multiplier>
           <name>Ibuf Used Cells</name>
           <status>0</status>
@@ -4249,7 +4249,7 @@
           <description>MySQL Spin Rounds</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.spin-rounds</key>
+          <key>MySQL.[spin_rounds]</key>
           <multiplier>0</multiplier>
           <name>Spin Rounds</name>
           <status>0</status>
@@ -4270,7 +4270,7 @@
           <description>MySQL Os Waits</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.os-waits</key>
+          <key>MySQL.[os_waits]</key>
           <multiplier>0</multiplier>
           <name>Os Waits</name>
           <status>0</status>
@@ -4291,7 +4291,7 @@
           <description>MySQL Spin Waits</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.spin-waits</key>
+          <key>MySQL.[spin_waits]</key>
           <multiplier>0</multiplier>
           <name>Spin Waits</name>
           <status>0</status>
@@ -4312,7 +4312,7 @@
           <description>MySQL Rows Deleted</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.rows-deleted</key>
+          <key>MySQL.[rows_deleted]</key>
           <multiplier>0</multiplier>
           <name>Rows Deleted</name>
           <status>0</status>
@@ -4333,7 +4333,7 @@
           <description>MySQL Rows Inserted</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.rows-inserted</key>
+          <key>MySQL.[rows_inserted]</key>
           <multiplier>0</multiplier>
           <name>Rows Inserted</name>
           <status>0</status>
@@ -4354,7 +4354,7 @@
           <description>MySQL Rows Read</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.rows-read</key>
+          <key>MySQL.[rows_read]</key>
           <multiplier>0</multiplier>
           <name>Rows Read</name>
           <status>0</status>
@@ -4375,7 +4375,7 @@
           <description>MySQL Rows Updated</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.rows-updated</key>
+          <key>MySQL.[rows_updated]</key>
           <multiplier>0</multiplier>
           <name>Rows Updated</name>
           <status>0</status>
@@ -4396,7 +4396,7 @@
           <description>MySQL Slow Queries</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Slow-queries</key>
+          <key>MySQL.[Slow_queries]</key>
           <multiplier>0</multiplier>
           <name>Slow Queries</name>
           <status>0</status>
@@ -4417,7 +4417,7 @@
           <description>MySQL Table Locks Immediate</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Table-locks-immediate</key>
+          <key>MySQL.[Table_locks_immediate]</key>
           <multiplier>0</multiplier>
           <name>Table Locks Immediate</name>
           <status>0</status>
@@ -4438,7 +4438,7 @@
           <description>MySQL Table Locks Waited</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Table-locks-waited</key>
+          <key>MySQL.[Table_locks_waited]</key>
           <multiplier>0</multiplier>
           <name>Table Locks Waited</name>
           <status>0</status>
@@ -4459,7 +4459,7 @@
           <description>MySQL Max Used Connections</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Max-used-connections</key>
+          <key>MySQL.[Max_used_connections]</key>
           <multiplier>0</multiplier>
           <name>Max Used Connections</name>
           <status>0</status>
@@ -4480,7 +4480,7 @@
           <description>MySQL Threads Connected</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Threads-connected</key>
+          <key>MySQL.[Threads_connected]</key>
           <multiplier>0</multiplier>
           <name>Threads Connected</name>
           <status>0</status>
@@ -4501,7 +4501,7 @@
           <description>MySQL Connections</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Connections</key>
+          <key>MySQL.[Connections]</key>
           <multiplier>0</multiplier>
           <name>Connections</name>
           <status>0</status>
@@ -4522,7 +4522,7 @@
           <description>MySQL Aborted Connects</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Aborted-connects</key>
+          <key>MySQL.[Aborted_connects]</key>
           <multiplier>0</multiplier>
           <name>Aborted Connects</name>
           <status>0</status>
@@ -4543,7 +4543,7 @@
           <description>MySQL Aborted Clients</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Aborted-clients</key>
+          <key>MySQL.[Aborted_clients]</key>
           <multiplier>0</multiplier>
           <name>Aborted Clients</name>
           <status>0</status>
@@ -4564,7 +4564,7 @@
           <description>MySQL Max Connections</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.max-connections</key>
+          <key>MySQL.[max_connections]</key>
           <multiplier>0</multiplier>
           <name>Max Connections</name>
           <status>0</status>
@@ -4585,7 +4585,7 @@
           <description>MySQL Slave Retried Transactions</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Slave-retried-transactions</key>
+          <key>MySQL.[Slave_retried_transactions]</key>
           <multiplier>0</multiplier>
           <name>Slave Retried Transactions</name>
           <status>0</status>
@@ -4606,7 +4606,7 @@
           <description>MySQL Slave Open Temp Tables</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Slave-open-temp-tables</key>
+          <key>MySQL.[Slave_open_temp_tables]</key>
           <multiplier>0</multiplier>
           <name>Slave Open Temp Tables</name>
           <status>0</status>
@@ -4627,7 +4627,7 @@
           <description>MySQL Slave Stopped</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.slave-stopped</key>
+          <key>MySQL.[slave_stopped]</key>
           <multiplier>0</multiplier>
           <name>Slave Stopped</name>
           <status>0</status>
@@ -4648,7 +4648,7 @@
           <description>MySQL Slave Running</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.slave-running</key>
+          <key>MySQL.[slave_running]</key>
           <multiplier>0</multiplier>
           <name>Slave Running</name>
           <status>0</status>
@@ -4669,7 +4669,7 @@
           <description>MySQL Slave Lag</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.slave-lag</key>
+          <key>MySQL.[slave_lag]</key>
           <multiplier>0</multiplier>
           <name>Slave Lag</name>
           <status>0</status>
@@ -4690,7 +4690,7 @@
           <description>MySQL Qcache Inserts</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-inserts</key>
+          <key>MySQL.[Qcache_inserts]</key>
           <multiplier>0</multiplier>
           <name>Qcache Inserts</name>
           <status>0</status>
@@ -4711,7 +4711,7 @@
           <description>MySQL Qcache Hits</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-hits</key>
+          <key>MySQL.[Qcache_hits]</key>
           <multiplier>0</multiplier>
           <name>Qcache Hits</name>
           <status>0</status>
@@ -4732,7 +4732,7 @@
           <description>MySQL Qcache Not Cached</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-not-cached</key>
+          <key>MySQL.[Qcache_not_cached]</key>
           <multiplier>0</multiplier>
           <name>Qcache Not Cached</name>
           <status>0</status>
@@ -4753,7 +4753,7 @@
           <description>MySQL Qcache Queries In Cache</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-queries-in-cache</key>
+          <key>MySQL.[Qcache_queries_in_cache]</key>
           <multiplier>0</multiplier>
           <name>Qcache Queries In Cache</name>
           <status>0</status>
@@ -4774,7 +4774,7 @@
           <description>MySQL Qcache Lowmem Prunes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-lowmem-prunes</key>
+          <key>MySQL.[Qcache_lowmem_prunes]</key>
           <multiplier>0</multiplier>
           <name>Qcache Lowmem Prunes</name>
           <status>0</status>
@@ -4795,7 +4795,7 @@
           <description>MySQL Query Cache Size</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.query-cache-size</key>
+          <key>MySQL.[query_cache_size]</key>
           <multiplier>0</multiplier>
           <name>Query Cache Size</name>
           <status>0</status>
@@ -4816,7 +4816,7 @@
           <description>MySQL Qcache Free Blocks</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-free-blocks</key>
+          <key>MySQL.[Qcache_free_blocks]</key>
           <multiplier>0</multiplier>
           <name>Qcache Free Blocks</name>
           <status>0</status>
@@ -4837,7 +4837,7 @@
           <description>MySQL Qcache Total Blocks</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-total-blocks</key>
+          <key>MySQL.[Qcache_total_blocks]</key>
           <multiplier>0</multiplier>
           <name>Qcache Total Blocks</name>
           <status>0</status>
@@ -4858,7 +4858,7 @@
           <description>MySQL Qcache Free Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Qcache-free-memory</key>
+          <key>MySQL.[Qcache_free_memory]</key>
           <multiplier>0</multiplier>
           <name>Qcache Free Memory</name>
           <status>0</status>
@@ -4879,7 +4879,7 @@
           <description>MySQL Com Select</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-select</key>
+          <key>MySQL.[Com_select]</key>
           <multiplier>0</multiplier>
           <name>Com Select</name>
           <status>0</status>
@@ -4900,7 +4900,7 @@
           <description>MySQL Com Insert Select</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-insert-select</key>
+          <key>MySQL.[Com_insert_select]</key>
           <multiplier>0</multiplier>
           <name>Com Insert Select</name>
           <status>0</status>
@@ -4921,7 +4921,7 @@
           <description>MySQL Com Insert</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-insert</key>
+          <key>MySQL.[Com_insert]</key>
           <multiplier>0</multiplier>
           <name>Com Insert</name>
           <status>0</status>
@@ -4942,7 +4942,7 @@
           <description>MySQL Com Delete Multi</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-delete-multi</key>
+          <key>MySQL.[Com_delete_multi]</key>
           <multiplier>0</multiplier>
           <name>Com Delete Multi</name>
           <status>0</status>
@@ -4963,7 +4963,7 @@
           <description>MySQL Com Update Multi</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-update-multi</key>
+          <key>MySQL.[Com_update_multi]</key>
           <multiplier>0</multiplier>
           <name>Com Update Multi</name>
           <status>0</status>
@@ -4984,7 +4984,7 @@
           <description>MySQL Com Replace</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-replace</key>
+          <key>MySQL.[Com_replace]</key>
           <multiplier>0</multiplier>
           <name>Com Replace</name>
           <status>0</status>
@@ -5005,7 +5005,7 @@
           <description>MySQL Com Update</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-update</key>
+          <key>MySQL.[Com_update]</key>
           <multiplier>0</multiplier>
           <name>Com Update</name>
           <status>0</status>
@@ -5026,7 +5026,7 @@
           <description>MySQL Com Delete</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-delete</key>
+          <key>MySQL.[Com_delete]</key>
           <multiplier>0</multiplier>
           <name>Com Delete</name>
           <status>0</status>
@@ -5047,7 +5047,7 @@
           <description>MySQL Questions</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Questions</key>
+          <key>MySQL.[Questions]</key>
           <multiplier>0</multiplier>
           <name>Questions</name>
           <status>0</status>
@@ -5068,7 +5068,7 @@
           <description>MySQL Com Load</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-load</key>
+          <key>MySQL.[Com_load]</key>
           <multiplier>0</multiplier>
           <name>Com Load</name>
           <status>0</status>
@@ -5089,7 +5089,7 @@
           <description>MySQL Com Replace Select</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Com-replace-select</key>
+          <key>MySQL.[Com_replace_select]</key>
           <multiplier>0</multiplier>
           <name>Com Replace Select</name>
           <status>0</status>
@@ -5110,7 +5110,7 @@
           <description>MySQL Select Range Check</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Select-range-check</key>
+          <key>MySQL.[Select_range_check]</key>
           <multiplier>0</multiplier>
           <name>Select Range Check</name>
           <status>0</status>
@@ -5131,7 +5131,7 @@
           <description>MySQL Select Scan</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Select-scan</key>
+          <key>MySQL.[Select_scan]</key>
           <multiplier>0</multiplier>
           <name>Select Scan</name>
           <status>0</status>
@@ -5152,7 +5152,7 @@
           <description>MySQL Select Range</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Select-range</key>
+          <key>MySQL.[Select_range]</key>
           <multiplier>0</multiplier>
           <name>Select Range</name>
           <status>0</status>
@@ -5173,7 +5173,7 @@
           <description>MySQL Select Full Range Join</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Select-full-range-join</key>
+          <key>MySQL.[Select_full_range_join]</key>
           <multiplier>0</multiplier>
           <name>Select Full Range Join</name>
           <status>0</status>
@@ -5194,7 +5194,7 @@
           <description>MySQL Select Full Join</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Select-full-join</key>
+          <key>MySQL.[Select_full_join]</key>
           <multiplier>0</multiplier>
           <name>Select Full Join</name>
           <status>0</status>
@@ -5215,7 +5215,7 @@
           <description>MySQL Sort Scan</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Sort-scan</key>
+          <key>MySQL.[Sort_scan]</key>
           <multiplier>0</multiplier>
           <name>Sort Scan</name>
           <status>0</status>
@@ -5236,7 +5236,7 @@
           <description>MySQL Sort Range</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Sort-range</key>
+          <key>MySQL.[Sort_range]</key>
           <multiplier>0</multiplier>
           <name>Sort Range</name>
           <status>0</status>
@@ -5257,7 +5257,7 @@
           <description>MySQL Sort Merge Passes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Sort-merge-passes</key>
+          <key>MySQL.[Sort_merge_passes]</key>
           <multiplier>0</multiplier>
           <name>Sort Merge Passes</name>
           <status>0</status>
@@ -5278,7 +5278,7 @@
           <description>MySQL Sort Rows</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Sort-rows</key>
+          <key>MySQL.[Sort_rows]</key>
           <multiplier>0</multiplier>
           <name>Sort Rows</name>
           <status>0</status>
@@ -5299,7 +5299,7 @@
           <description>MySQL Created Tmp Tables</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Created-tmp-tables</key>
+          <key>MySQL.[Created_tmp_tables]</key>
           <multiplier>0</multiplier>
           <name>Created Tmp Tables</name>
           <status>0</status>
@@ -5320,7 +5320,7 @@
           <description>MySQL Created Tmp Disk Tables</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Created-tmp-disk-tables</key>
+          <key>MySQL.[Created_tmp_disk_tables]</key>
           <multiplier>0</multiplier>
           <name>Created Tmp Disk Tables</name>
           <status>0</status>
@@ -5341,7 +5341,7 @@
           <description>MySQL Created Tmp Files</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Created-tmp-files</key>
+          <key>MySQL.[Created_tmp_files]</key>
           <multiplier>0</multiplier>
           <name>Created Tmp Files</name>
           <status>0</status>
@@ -5362,7 +5362,7 @@
           <description>MySQL Bytes Sent</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Bytes-sent</key>
+          <key>MySQL.[Bytes_sent]</key>
           <multiplier>0</multiplier>
           <name>Bytes Sent</name>
           <status>0</status>
@@ -5381,9 +5381,9 @@
           <delay>300</delay>
           <delta>1</delta>
           <description>MySQL Bytes Received</description>
-          <formula>-1</formula>
+          <formula>_1</formula>
           <history>90</history>
-          <key>MySQL.Bytes-received</key>
+          <key>MySQL.[Bytes_received]</key>
           <multiplier>1</multiplier>
           <name>Bytes Received</name>
           <status>0</status>
@@ -5404,7 +5404,7 @@
           <description>MySQL Pages Read</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pages-read</key>
+          <key>MySQL.[pages_read]</key>
           <multiplier>0</multiplier>
           <name>Pages Read</name>
           <status>0</status>
@@ -5425,7 +5425,7 @@
           <description>MySQL Pages Created</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pages-created</key>
+          <key>MySQL.[pages_created]</key>
           <multiplier>0</multiplier>
           <name>Pages Created</name>
           <status>0</status>
@@ -5446,7 +5446,7 @@
           <description>MySQL Pages Written</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pages-written</key>
+          <key>MySQL.[pages_written]</key>
           <multiplier>0</multiplier>
           <name>Pages Written</name>
           <status>0</status>
@@ -5467,7 +5467,7 @@
           <description>MySQL Pending Buf Pool Flushes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-buf-pool-flushes</key>
+          <key>MySQL.[pending_buf_pool_flushes]</key>
           <multiplier>0</multiplier>
           <name>Pending Buf Pool Flushes</name>
           <status>0</status>
@@ -5488,7 +5488,7 @@
           <description>MySQL Pending Log Flushes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-log-flushes</key>
+          <key>MySQL.[pending_log_flushes]</key>
           <multiplier>0</multiplier>
           <name>Pending Log Flushes</name>
           <status>0</status>
@@ -5509,7 +5509,7 @@
           <description>MySQL Pending Aio Sync Ios</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-aio-sync-ios</key>
+          <key>MySQL.[pending_aio_sync_ios]</key>
           <multiplier>0</multiplier>
           <name>Pending Aio Sync Ios</name>
           <status>0</status>
@@ -5530,7 +5530,7 @@
           <description>MySQL Pending Normal Aio Writes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-normal-aio-writes</key>
+          <key>MySQL.[pending_normal_aio_writes]</key>
           <multiplier>0</multiplier>
           <name>Pending Normal Aio Writes</name>
           <status>0</status>
@@ -5551,7 +5551,7 @@
           <description>MySQL Pending Log Writes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-log-writes</key>
+          <key>MySQL.[pending_log_writes]</key>
           <multiplier>0</multiplier>
           <name>Pending Log Writes</name>
           <status>0</status>
@@ -5572,7 +5572,7 @@
           <description>MySQL Pending Aio Log Ios</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-aio-log-ios</key>
+          <key>MySQL.[pending_aio_log_ios]</key>
           <multiplier>0</multiplier>
           <name>Pending Aio Log Ios</name>
           <status>0</status>
@@ -5593,7 +5593,7 @@
           <description>MySQL Pending Ibuf Aio Reads</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-ibuf-aio-reads</key>
+          <key>MySQL.[pending_ibuf_aio_reads]</key>
           <multiplier>0</multiplier>
           <name>Pending Ibuf Aio Reads</name>
           <status>0</status>
@@ -5614,7 +5614,7 @@
           <description>MySQL Pending Normal Aio Reads</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-normal-aio-reads</key>
+          <key>MySQL.[pending_normal_aio_reads]</key>
           <multiplier>0</multiplier>
           <name>Pending Normal Aio Reads</name>
           <status>0</status>
@@ -5635,7 +5635,7 @@
           <description>MySQL Pending Chkp Writes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pending-chkp-writes</key>
+          <key>MySQL.[pending_chkp_writes]</key>
           <multiplier>0</multiplier>
           <name>Pending Chkp Writes</name>
           <status>0</status>
@@ -5656,7 +5656,7 @@
           <description>MySQL Unflushed Log</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.unflushed-log</key>
+          <key>MySQL.[unflushed_log]</key>
           <multiplier>0</multiplier>
           <name>Unflushed Log</name>
           <status>0</status>
@@ -5677,7 +5677,7 @@
           <description>MySQL Log Bytes Written</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.log-bytes-written</key>
+          <key>MySQL.[log_bytes_written]</key>
           <multiplier>0</multiplier>
           <name>Log Bytes Written</name>
           <status>0</status>
@@ -5698,7 +5698,7 @@
           <description>MySQL Innodb Log Buffer Size</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-log-buffer-size</key>
+          <key>MySQL.[innodb_log_buffer_size]</key>
           <multiplier>0</multiplier>
           <name>Innodb Log Buffer Size</name>
           <status>0</status>
@@ -5719,7 +5719,7 @@
           <description>MySQL Log Bytes Flushed</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.log-bytes-flushed</key>
+          <key>MySQL.[log_bytes_flushed]</key>
           <multiplier>0</multiplier>
           <name>Log Bytes Flushed</name>
           <status>0</status>
@@ -5740,7 +5740,7 @@
           <description>MySQL Binlog Cache Use</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Binlog-cache-use</key>
+          <key>MySQL.[Binlog_cache_use]</key>
           <multiplier>0</multiplier>
           <name>Binlog Cache Use</name>
           <status>0</status>
@@ -5761,7 +5761,7 @@
           <description>MySQL Binlog Cache Disk Use</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Binlog-cache-disk-use</key>
+          <key>MySQL.[Binlog_cache_disk_use]</key>
           <multiplier>0</multiplier>
           <name>Binlog Cache Disk Use</name>
           <status>0</status>
@@ -5782,7 +5782,7 @@
           <description>MySQL Relay Log Space</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.relay-log-space</key>
+          <key>MySQL.[relay_log_space]</key>
           <multiplier>0</multiplier>
           <name>Relay Log Space</name>
           <status>0</status>
@@ -5803,7 +5803,7 @@
           <description>MySQL Binary Log Space</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.binary-log-space</key>
+          <key>MySQL.[binary_log_space]</key>
           <multiplier>0</multiplier>
           <name>Binary Log Space</name>
           <status>0</status>
@@ -5824,7 +5824,7 @@
           <description>MySQL Innodb Transactions</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-transactions</key>
+          <key>MySQL.[innodb_transactions]</key>
           <multiplier>0</multiplier>
           <name>Innodb Transactions</name>
           <status>0</status>
@@ -5845,7 +5845,7 @@
           <description>MySQL History List</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.history-list</key>
+          <key>MySQL.[history_list]</key>
           <multiplier>0</multiplier>
           <name>History List</name>
           <status>0</status>
@@ -5866,7 +5866,7 @@
           <description>MySQL Active Transactions</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.active-transactions</key>
+          <key>MySQL.[active_transactions]</key>
           <multiplier>0</multiplier>
           <name>Active Transactions</name>
           <status>0</status>
@@ -5887,7 +5887,7 @@
           <description>MySQL Read Views</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.read-views</key>
+          <key>MySQL.[read_views]</key>
           <multiplier>0</multiplier>
           <name>Read Views</name>
           <status>0</status>
@@ -5908,7 +5908,7 @@
           <description>MySQL Locked Transactions</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.locked-transactions</key>
+          <key>MySQL.[locked_transactions]</key>
           <multiplier>0</multiplier>
           <name>Locked Transactions</name>
           <status>0</status>
@@ -5929,7 +5929,7 @@
           <description>MySQL Current Transactions</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.current-transactions</key>
+          <key>MySQL.[current_transactions]</key>
           <multiplier>0</multiplier>
           <name>Current Transactions</name>
           <status>0</status>
@@ -5950,7 +5950,7 @@
           <description>MySQL Table Cache</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.table-cache</key>
+          <key>MySQL.[table_cache]</key>
           <multiplier>0</multiplier>
           <name>Table Cache</name>
           <status>0</status>
@@ -5971,7 +5971,7 @@
           <description>MySQL Open Tables</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Open-tables</key>
+          <key>MySQL.[Open_tables]</key>
           <multiplier>0</multiplier>
           <name>Open Tables</name>
           <status>0</status>
@@ -5992,7 +5992,7 @@
           <description>MySQL Opened Tables</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Opened-tables</key>
+          <key>MySQL.[Opened_tables]</key>
           <multiplier>0</multiplier>
           <name>Opened Tables</name>
           <status>0</status>
@@ -6013,7 +6013,7 @@
           <description>MySQL Open Files</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Open-files</key>
+          <key>MySQL.[Open_files]</key>
           <multiplier>0</multiplier>
           <name>Open Files</name>
           <status>0</status>
@@ -6034,7 +6034,7 @@
           <description>MySQL Threads Running</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Threads-running</key>
+          <key>MySQL.[Threads_running]</key>
           <multiplier>0</multiplier>
           <name>Threads Running</name>
           <status>0</status>
@@ -6055,7 +6055,7 @@
           <description>MySQL Threads Connected</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Threads-connected</key>
+          <key>MySQL.[Threads_connected]</key>
           <multiplier>0</multiplier>
           <name>Threads Connected</name>
           <status>0</status>
@@ -6076,7 +6076,7 @@
           <description>MySQL Threads Cached</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Threads-cached</key>
+          <key>MySQL.[Threads_cached]</key>
           <multiplier>0</multiplier>
           <name>Threads Cached</name>
           <status>0</status>
@@ -6097,7 +6097,7 @@
           <description>MySQL Thread Cache Size</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.thread-cache-size</key>
+          <key>MySQL.[thread_cache_size]</key>
           <multiplier>0</multiplier>
           <name>Thread Cache Size</name>
           <status>0</status>
@@ -6118,7 +6118,7 @@
           <description>MySQL Threads Created</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Threads-created</key>
+          <key>MySQL.[Threads_created]</key>
           <multiplier>0</multiplier>
           <name>Threads Created</name>
           <status>0</status>
@@ -6139,7 +6139,7 @@
           <description>MySQL Additional Pool Alloc</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.additional-pool-alloc</key>
+          <key>MySQL.[additional_pool_alloc]</key>
           <multiplier>0</multiplier>
           <name>Additional Pool Alloc</name>
           <status>0</status>
@@ -6160,7 +6160,7 @@
           <description>MySQL Total Mem Alloc</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.total-mem-alloc</key>
+          <key>MySQL.[total_mem_alloc]</key>
           <multiplier>0</multiplier>
           <name>Total Mem Alloc</name>
           <status>0</status>
@@ -6181,7 +6181,7 @@
           <description>MySQL Hash Index Cells Total</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.hash-index-cells-total</key>
+          <key>MySQL.[hash_index_cells_total]</key>
           <multiplier>0</multiplier>
           <name>Hash Index Cells Total</name>
           <status>0</status>
@@ -6202,7 +6202,7 @@
           <description>MySQL Hash Index Cells Used</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.hash-index-cells-used</key>
+          <key>MySQL.[hash_index_cells_used]</key>
           <multiplier>0</multiplier>
           <name>Hash Index Cells Used</name>
           <status>0</status>
@@ -6223,7 +6223,7 @@
           <description>MySQL Page Hash Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.page-hash-memory</key>
+          <key>MySQL.[page_hash_memory]</key>
           <multiplier>0</multiplier>
           <name>Page Hash Memory</name>
           <status>0</status>
@@ -6244,7 +6244,7 @@
           <description>MySQL Recovery System Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.recovery-system-memory</key>
+          <key>MySQL.[recovery_system_memory]</key>
           <multiplier>0</multiplier>
           <name>Recovery System Memory</name>
           <status>0</status>
@@ -6265,7 +6265,7 @@
           <description>MySQL Lock System Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.lock-system-memory</key>
+          <key>MySQL.[lock_system_memory]</key>
           <multiplier>0</multiplier>
           <name>Lock System Memory</name>
           <status>0</status>
@@ -6286,7 +6286,7 @@
           <description>MySQL Dictionary Cache Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.dictionary-cache-memory</key>
+          <key>MySQL.[dictionary_cache_memory]</key>
           <multiplier>0</multiplier>
           <name>Dictionary Cache Memory</name>
           <status>0</status>
@@ -6307,7 +6307,7 @@
           <description>MySQL Adaptive Hash Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.adaptive-hash-memory</key>
+          <key>MySQL.[adaptive_hash_memory]</key>
           <multiplier>0</multiplier>
           <name>Adaptive Hash Memory</name>
           <status>0</status>
@@ -6328,7 +6328,7 @@
           <description>MySQL File System Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.file-system-memory</key>
+          <key>MySQL.[file_system_memory]</key>
           <multiplier>0</multiplier>
           <name>File System Memory</name>
           <status>0</status>
@@ -6349,7 +6349,7 @@
           <description>MySQL Thread Hash Memory</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.thread-hash-memory</key>
+          <key>MySQL.[thread_hash_memory]</key>
           <multiplier>0</multiplier>
           <name>Thread Hash Memory</name>
           <status>0</status>
@@ -6370,7 +6370,7 @@
           <description>MySQL Innodb Tables In Use</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-tables-in-use</key>
+          <key>MySQL.[innodb_tables_in_use]</key>
           <multiplier>0</multiplier>
           <name>Innodb Tables In Use</name>
           <status>0</status>
@@ -6391,7 +6391,7 @@
           <description>MySQL Innodb Locked Tables</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-locked-tables</key>
+          <key>MySQL.[innodb_locked_tables]</key>
           <multiplier>0</multiplier>
           <name>Innodb Locked Tables</name>
           <status>0</status>
@@ -6412,7 +6412,7 @@
           <description>MySQL Innodb Lock Wait Secs</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-lock-wait-secs</key>
+          <key>MySQL.[innodb_lock_wait_secs]</key>
           <multiplier>0</multiplier>
           <name>Innodb Lock Wait Secs</name>
           <status>0</status>
@@ -6433,7 +6433,7 @@
           <description>MySQL Innodb Lock Structs</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-lock-structs</key>
+          <key>MySQL.[innodb_lock_structs]</key>
           <multiplier>0</multiplier>
           <name>Innodb Lock Structs</name>
           <status>0</status>
@@ -6454,7 +6454,7 @@
           <description>MySQL Uncheckpointed Bytes</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.uncheckpointed-bytes</key>
+          <key>MySQL.[uncheckpointed_bytes]</key>
           <multiplier>0</multiplier>
           <name>Uncheckpointed Bytes</name>
           <status>0</status>
@@ -6475,7 +6475,7 @@
           <description>MySQL Innodb Row Lock Time</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Innodb-row-lock-time</key>
+          <key>MySQL.[Innodb_row_lock_time]</key>
           <multiplier>0</multiplier>
           <name>Innodb Row Lock Time</name>
           <status>0</status>
@@ -6496,7 +6496,7 @@
           <description>MySQL Innodb Row Lock Waits</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Innodb-row-lock-waits</key>
+          <key>MySQL.[Innodb_row_lock_waits]</key>
           <multiplier>0</multiplier>
           <name>Innodb Row Lock Waits</name>
           <status>0</status>
@@ -6517,7 +6517,7 @@
           <description>MySQL Innodb Sem Waits</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-sem-waits</key>
+          <key>MySQL.[innodb_sem_waits]</key>
           <multiplier>0</multiplier>
           <name>Innodb Sem Waits</name>
           <status>0</status>
@@ -6538,7 +6538,7 @@
           <description>MySQL Innodb Sem Wait Time Ms</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.innodb-sem-wait-time-ms</key>
+          <key>MySQL.[innodb_sem_wait_time_ms]</key>
           <multiplier>0</multiplier>
           <name>Innodb Sem Wait Time Ms</name>
           <status>0</status>
@@ -6559,7 +6559,7 @@
           <description>MySQL State Sending Data</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-sending-data</key>
+          <key>MySQL.[State_sending_data]</key>
           <multiplier>0</multiplier>
           <name>State Sending Data</name>
           <status>0</status>
@@ -6580,7 +6580,7 @@
           <description>MySQL State Reading From Net</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-reading-from-net</key>
+          <key>MySQL.[State_reading_from_net]</key>
           <multiplier>0</multiplier>
           <name>State Reading From Net</name>
           <status>0</status>
@@ -6601,7 +6601,7 @@
           <description>MySQL State Closing Tables</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-closing-tables</key>
+          <key>MySQL.[State_closing_tables]</key>
           <multiplier>0</multiplier>
           <name>State Closing Tables</name>
           <status>0</status>
@@ -6622,7 +6622,7 @@
           <description>MySQL State Writing To Net</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-writing-to-net</key>
+          <key>MySQL.[State_writing_to_net]</key>
           <multiplier>0</multiplier>
           <name>State Writing To Net</name>
           <status>0</status>
@@ -6643,7 +6643,7 @@
           <description>MySQL State Init</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-init</key>
+          <key>MySQL.[State_init]</key>
           <multiplier>0</multiplier>
           <name>State Init</name>
           <status>0</status>
@@ -6664,7 +6664,7 @@
           <description>MySQL State Copying To Tmp Table</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-copying-to-tmp-table</key>
+          <key>MySQL.[State_copying_to_tmp_table]</key>
           <multiplier>0</multiplier>
           <name>State Copying To Tmp Table</name>
           <status>0</status>
@@ -6685,7 +6685,7 @@
           <description>MySQL State Updating</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-updating</key>
+          <key>MySQL.[State_updating]</key>
           <multiplier>0</multiplier>
           <name>State Updating</name>
           <status>0</status>
@@ -6706,7 +6706,7 @@
           <description>MySQL State Other</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-other</key>
+          <key>MySQL.[State_other]</key>
           <multiplier>0</multiplier>
           <name>State Other</name>
           <status>0</status>
@@ -6727,7 +6727,7 @@
           <description>MySQL State End</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-end</key>
+          <key>MySQL.[State_end]</key>
           <multiplier>0</multiplier>
           <name>State End</name>
           <status>0</status>
@@ -6748,7 +6748,7 @@
           <description>MySQL State None</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-none</key>
+          <key>MySQL.[State_none]</key>
           <multiplier>0</multiplier>
           <name>State None</name>
           <status>0</status>
@@ -6769,7 +6769,7 @@
           <description>MySQL State Locked</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-locked</key>
+          <key>MySQL.[State_locked]</key>
           <multiplier>0</multiplier>
           <name>State Locked</name>
           <status>0</status>
@@ -6790,7 +6790,7 @@
           <description>MySQL State Login</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-login</key>
+          <key>MySQL.[State_login]</key>
           <multiplier>0</multiplier>
           <name>State Login</name>
           <status>0</status>
@@ -6811,7 +6811,7 @@
           <description>MySQL State Sorting Result</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-sorting-result</key>
+          <key>MySQL.[State_sorting_result]</key>
           <multiplier>0</multiplier>
           <name>State Sorting Result</name>
           <status>0</status>
@@ -6832,7 +6832,7 @@
           <description>MySQL State Freeing Items</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-freeing-items</key>
+          <key>MySQL.[State_freeing_items]</key>
           <multiplier>0</multiplier>
           <name>State Freeing Items</name>
           <status>0</status>
@@ -6853,7 +6853,7 @@
           <description>MySQL State Statistics</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-statistics</key>
+          <key>MySQL.[State_statistics]</key>
           <multiplier>0</multiplier>
           <name>State Statistics</name>
           <status>0</status>
@@ -6874,7 +6874,7 @@
           <description>MySQL State Preparing</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.State-preparing</key>
+          <key>MySQL.[State_preparing]</key>
           <multiplier>0</multiplier>
           <name>State Preparing</name>
           <status>0</status>
@@ -6895,7 +6895,7 @@
           <description>MySQL Handler Rollback</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-rollback</key>
+          <key>MySQL.[Handler_rollback]</key>
           <multiplier>0</multiplier>
           <name>Handler Rollback</name>
           <status>0</status>
@@ -6916,7 +6916,7 @@
           <description>MySQL Handler Savepoint</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-savepoint</key>
+          <key>MySQL.[Handler_savepoint]</key>
           <multiplier>0</multiplier>
           <name>Handler Savepoint</name>
           <status>0</status>
@@ -6937,7 +6937,7 @@
           <description>MySQL Handler Savepoint Rollback</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-savepoint-rollback</key>
+          <key>MySQL.[Handler_savepoint_rollback]</key>
           <multiplier>0</multiplier>
           <name>Handler Savepoint Rollback</name>
           <status>0</status>
@@ -6958,7 +6958,7 @@
           <description>MySQL Handler Commit</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-commit</key>
+          <key>MySQL.[Handler_commit]</key>
           <multiplier>0</multiplier>
           <name>Handler Commit</name>
           <status>0</status>
@@ -6979,7 +6979,7 @@
           <description>MySQL Handler Read Key</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-read-key</key>
+          <key>MySQL.[Handler_read_key]</key>
           <multiplier>0</multiplier>
           <name>Handler Read Key</name>
           <status>0</status>
@@ -7000,7 +7000,7 @@
           <description>MySQL Handler Delete</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-delete</key>
+          <key>MySQL.[Handler_delete]</key>
           <multiplier>0</multiplier>
           <name>Handler Delete</name>
           <status>0</status>
@@ -7021,7 +7021,7 @@
           <description>MySQL Handler Read Prev</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-read-prev</key>
+          <key>MySQL.[Handler_read_prev]</key>
           <multiplier>0</multiplier>
           <name>Handler Read Prev</name>
           <status>0</status>
@@ -7042,7 +7042,7 @@
           <description>MySQL Handler Read Rnd Next</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-read-rnd-next</key>
+          <key>MySQL.[Handler_read_rnd_next]</key>
           <multiplier>0</multiplier>
           <name>Handler Read Rnd Next</name>
           <status>0</status>
@@ -7063,7 +7063,7 @@
           <description>MySQL Handler Update</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-update</key>
+          <key>MySQL.[Handler_update]</key>
           <multiplier>0</multiplier>
           <name>Handler Update</name>
           <status>0</status>
@@ -7084,7 +7084,7 @@
           <description>MySQL Handler Read Next</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-read-next</key>
+          <key>MySQL.[Handler_read_next]</key>
           <multiplier>0</multiplier>
           <name>Handler Read Next</name>
           <status>0</status>
@@ -7105,7 +7105,7 @@
           <description>MySQL Handler Read First</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-read-first</key>
+          <key>MySQL.[Handler_read_first]</key>
           <multiplier>0</multiplier>
           <name>Handler Read First</name>
           <status>0</status>
@@ -7126,7 +7126,7 @@
           <description>MySQL Handler Write</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-write</key>
+          <key>MySQL.[Handler_write]</key>
           <multiplier>0</multiplier>
           <name>Handler Write</name>
           <status>0</status>
@@ -7147,7 +7147,7 @@
           <description>MySQL Handler Read Rnd</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Handler-read-rnd</key>
+          <key>MySQL.[Handler_read_rnd]</key>
           <multiplier>0</multiplier>
           <name>Handler Read Rnd</name>
           <status>0</status>
@@ -7168,7 +7168,7 @@
           <description>MySQL Query Time Count 00</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-00</key>
+          <key>MySQL.[Query_time_count_00]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 00</name>
           <status>0</status>
@@ -7189,7 +7189,7 @@
           <description>MySQL Query Time Count 01</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-01</key>
+          <key>MySQL.[Query_time_count_01]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 01</name>
           <status>0</status>
@@ -7210,7 +7210,7 @@
           <description>MySQL Query Time Count 02</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-02</key>
+          <key>MySQL.[Query_time_count_02]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 02</name>
           <status>0</status>
@@ -7231,7 +7231,7 @@
           <description>MySQL Query Time Count 13</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-13</key>
+          <key>MySQL.[Query_time_count_13]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 13</name>
           <status>0</status>
@@ -7252,7 +7252,7 @@
           <description>MySQL Query Time Count 12</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-12</key>
+          <key>MySQL.[Query_time_count_12]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 12</name>
           <status>0</status>
@@ -7273,7 +7273,7 @@
           <description>MySQL Query Time Count 11</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-11</key>
+          <key>MySQL.[Query_time_count_11]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 11</name>
           <status>0</status>
@@ -7294,7 +7294,7 @@
           <description>MySQL Query Time Count 03</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-03</key>
+          <key>MySQL.[Query_time_count_03]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 03</name>
           <status>0</status>
@@ -7315,7 +7315,7 @@
           <description>MySQL Query Time Count 04</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-04</key>
+          <key>MySQL.[Query_time_count_04]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 04</name>
           <status>0</status>
@@ -7336,7 +7336,7 @@
           <description>MySQL Query Time Count 05</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-05</key>
+          <key>MySQL.[Query_time_count_05]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 05</name>
           <status>0</status>
@@ -7357,7 +7357,7 @@
           <description>MySQL Query Time Count 06</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-06</key>
+          <key>MySQL.[Query_time_count_06]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 06</name>
           <status>0</status>
@@ -7378,7 +7378,7 @@
           <description>MySQL Query Time Count 07</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-07</key>
+          <key>MySQL.[Query_time_count_07]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 07</name>
           <status>0</status>
@@ -7399,7 +7399,7 @@
           <description>MySQL Query Time Count 08</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-08</key>
+          <key>MySQL.[Query_time_count_08]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 08</name>
           <status>0</status>
@@ -7420,7 +7420,7 @@
           <description>MySQL Query Time Count 09</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-09</key>
+          <key>MySQL.[Query_time_count_09]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 09</name>
           <status>0</status>
@@ -7441,7 +7441,7 @@
           <description>MySQL Query Time Count 10</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-count-10</key>
+          <key>MySQL.[Query_time_count_10]</key>
           <multiplier>0</multiplier>
           <name>Query Time Count 10</name>
           <status>0</status>
@@ -7462,7 +7462,7 @@
           <description>MySQL Query Time Total 01</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-01</key>
+          <key>MySQL.[Query_time_total_01]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 01</name>
           <status>0</status>
@@ -7483,7 +7483,7 @@
           <description>MySQL Query Time Total 00</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-00</key>
+          <key>MySQL.[Query_time_total_00]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 00</name>
           <status>0</status>
@@ -7504,7 +7504,7 @@
           <description>MySQL Query Time Total 03</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-03</key>
+          <key>MySQL.[Query_time_total_03]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 03</name>
           <status>0</status>
@@ -7525,7 +7525,7 @@
           <description>MySQL Query Time Total 02</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-02</key>
+          <key>MySQL.[Query_time_total_02]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 02</name>
           <status>0</status>
@@ -7546,7 +7546,7 @@
           <description>MySQL Query Time Total 04</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-04</key>
+          <key>MySQL.[Query_time_total_04]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 04</name>
           <status>0</status>
@@ -7567,7 +7567,7 @@
           <description>MySQL Query Time Total 07</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-07</key>
+          <key>MySQL.[Query_time_total_07]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 07</name>
           <status>0</status>
@@ -7588,7 +7588,7 @@
           <description>MySQL Query Time Total 06</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-06</key>
+          <key>MySQL.[Query_time_total_06]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 06</name>
           <status>0</status>
@@ -7609,7 +7609,7 @@
           <description>MySQL Query Time Total 09</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-09</key>
+          <key>MySQL.[Query_time_total_09]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 09</name>
           <status>0</status>
@@ -7630,7 +7630,7 @@
           <description>MySQL Query Time Total 08</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-08</key>
+          <key>MySQL.[Query_time_total_08]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 08</name>
           <status>0</status>
@@ -7651,7 +7651,7 @@
           <description>MySQL Query Time Total 05</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-05</key>
+          <key>MySQL.[Query_time_total_05]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 05</name>
           <status>0</status>
@@ -7672,7 +7672,7 @@
           <description>MySQL Query Time Total 13</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-13</key>
+          <key>MySQL.[Query_time_total_13]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 13</name>
           <status>0</status>
@@ -7693,7 +7693,7 @@
           <description>MySQL Query Time Total 10</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-10</key>
+          <key>MySQL.[Query_time_total_10]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 10</name>
           <status>0</status>
@@ -7714,7 +7714,7 @@
           <description>MySQL Query Time Total 11</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-11</key>
+          <key>MySQL.[Query_time_total_11]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 11</name>
           <status>0</status>
@@ -7735,7 +7735,7 @@
           <description>MySQL Query Time Total 12</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.Query-time-total-12</key>
+          <key>MySQL.[Query_time_total_12]</key>
           <multiplier>0</multiplier>
           <name>Query Time Total 12</name>
           <status>0</status>
@@ -7756,7 +7756,7 @@
           <description>MySQL Pool Read Requests</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pool-read-requests</key>
+          <key>MySQL.[pool_read_requests]</key>
           <multiplier>0</multiplier>
           <name>Pool Read Requests</name>
           <status>0</status>
@@ -7777,7 +7777,7 @@
           <description>MySQL Pool Reads</description>
           <formula>1</formula>
           <history>90</history>
-          <key>MySQL.pool-reads</key>
+          <key>MySQL.[pool_reads]</key>
           <multiplier>0</multiplier>
           <name>Pool Reads</name>
           <status>0</status>
@@ -7815,7 +7815,7 @@
           <delta>0</delta>
           <description>MySQL running slave</description>
           <history>90</history>
-          <key>MySQL.running-slave</key>
+          <key>MySQL.[running_slave]</key>
           <name>MySQL running slave</name>
           <status>0</status>
           <trends>365</trends>
@@ -7833,7 +7833,7 @@
           <delta>0</delta>
           <description>MySQL Open files limit</description>
           <history>90</history>
-          <key>MySQL.Open-files-limit</key>
+          <key>MySQL.[open_files_limit]</key>
           <name>MySQL Open files limit</name>
           <status>0</status>
           <trends>365</trends>
@@ -8554,11 +8554,11 @@
     <trigger>
       <dependencies>
         <dependency>
-          <expression>{Actiontech MySQL Server Template:MySQL.Threads-connected.last(0)}/{Actiontech MySQL Server Template:MySQL.max-connections.last(0)}&gt;0.95</expression>
+          <expression>{Actiontech MySQL Server Template:MySQL.[Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[max_connections].last(0)}&gt;0.95</expression>
           <name>MySQL connections utilization more than 95% on {HOST.NAME}</name>
         </dependency>
       </dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.Threads-connected.last(0)}/{Actiontech MySQL Server Template:MySQL.max-connections.last(0)}&gt;0.8</expression>
+      <expression>{Actiontech MySQL Server Template:MySQL.[Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[max_connections].last(0)}&gt;0.8</expression>
       <name>MySQL connections utilization more than 80% on {HOST.NAME}</name>
       <priority>3</priority>
       <status>0</status>
@@ -8570,7 +8570,7 @@
           <name>MySQL is down on {HOST.NAME}</name>
         </dependency>
       </dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.Threads-connected.last(0)}/{Actiontech MySQL Server Template:MySQL.max-connections.last(0)}&gt;0.95</expression>
+      <expression>{Actiontech MySQL Server Template:MySQL.[Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[max_connections].last(0)}&gt;0.95</expression>
       <name>MySQL connections utilization more than 95% on {HOST.NAME}</name>
       <priority>4</priority>
       <status>0</status>
@@ -8578,11 +8578,11 @@
     <trigger>
       <dependencies>
         <dependency>
-          <expression>{Actiontech MySQL Server Template:MySQL.Threads-running.last(0)}&gt;100</expression>
+          <expression>{Actiontech MySQL Server Template:MySQL.[Threads_running].last(0)}&gt;100</expression>
           <name>MySQL active threads more than 100 on {HOST.NAME}</name>
         </dependency>
       </dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.Threads-running.last(0)}&gt;40</expression>
+      <expression>{Actiontech MySQL Server Template:MySQL.[Threads_running].last(0)}&gt;40</expression>
       <name>MySQL active threads more than 40 on {HOST.NAME}</name>
       <priority>3</priority>
       <status>0</status>
@@ -8594,7 +8594,7 @@
           <name>MySQL is down on {HOST.NAME}</name>
         </dependency>
       </dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.Threads-running.last(0)}&gt;100</expression>
+      <expression>{Actiontech MySQL Server Template:MySQL.[Threads_running].last(0)}&gt;100</expression>
       <name>MySQL active threads more than 100 on {HOST.NAME}</name>
       <priority>4</priority>
       <status>0</status>
@@ -8602,11 +8602,11 @@
     <trigger>
       <dependencies>
         <dependency>
-          <expression>{Actiontech MySQL Server Template:MySQL.slave-lag.last(0)}&gt;600</expression>
+          <expression>{Actiontech MySQL Server Template:MySQL.[slave_lag].last(0)}&gt;600</expression>
           <name>MySQL slave lag more than 600 on {HOST.NAME}</name>
         </dependency>
       </dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.slave-lag.last(0)}&gt;300</expression>
+      <expression>{Actiontech MySQL Server Template:MySQL.[slave_lag].last(0)}&gt;300</expression>
       <name>MySQL slave lag more than 300 on {HOST.NAME}</name>
       <priority>3</priority>
       <status>0</status>
@@ -8614,11 +8614,11 @@
     <trigger>
       <dependencies>
         <dependency>
-          <expression>{Actiontech MySQL Server Template:MySQL.running-slave.last(0)}=0</expression>
+          <expression>{Actiontech MySQL Server Template:MySQL.[running_slave].last(0)}=0</expression>
           <name>Slave is stopped on {HOST.NAME}</name>
         </dependency>
       </dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.slave-lag.last(0)}&gt;600</expression>
+      <expression>{Actiontech MySQL Server Template:MySQL.[slave_lag].last(0)}&gt;600</expression>
       <name>MySQL slave lag more than 600 on {HOST.NAME}</name>
       <priority>4</priority>
       <status>0</status>
@@ -8630,22 +8630,22 @@
           <name>MySQL is down on {HOST.NAME}</name>
         </dependency>
       </dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.running-slave.last(0)}=0</expression>
+      <expression>{Actiontech MySQL Server Template:MySQL.[running_slave].last(0)}=0</expression>
       <name>Slave is stopped on {HOST.NAME}</name>
       <priority>4</priority>
       <status>0</status>
     </trigger>
     <trigger>
       <dependencies></dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.max-connections.last(0)}&lt;4999</expression>
-      <name>MySQL max-connections less than 4999 on {HOST.NAME}</name>
+      <expression>{Actiontech MySQL Server Template:MySQL.[max_connections].last(0)}&lt;4999</expression>
+      <name>MySQL max_connections less than 4999 on {HOST.NAME}</name>
       <priority>3</priority>
       <status>0</status>
     </trigger>
     <trigger>
       <dependencies></dependencies>
-      <expression>{Actiontech MySQL Server Template:MySQL.Open-files-limit.last(0)}&lt;65534</expression>
-      <name>MySQL Open-files-limit less than 65534 on {HOST.NAME}</name>
+      <expression>{Actiontech MySQL Server Template:MySQL.[open_files_limit].last(0)}&lt;65534</expression>
+      <name>MySQL Open_files_limit less than 65534 on {HOST.NAME}</name>
       <priority>3</priority>
       <status>0</status>
     </trigger>

@@ -2,11 +2,14 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"flag"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"io/ioutil"
 	"log"
 	"os"
+	"os/exec"
 	"regexp"
 	"strconv"
 	"strings"
@@ -49,6 +52,7 @@ var (
 	slave             = flag.Bool("slave", true, "Whether to check slave status (default: true)")
 	procs             = flag.Bool("procs", true, "Whether to check SHOW PROCESSLIST (default: true)")
 	getQrt            = flag.Bool("get_qrt", true, "Whether to get response times from Percona Server or MariaDB (default: true)")
+	discoveryPort     = flag.Bool("discovery_port", false, "`discovery mysqld port`, print in json format")
 
 	// log
 	debugLogFile *os.File
@@ -75,6 +79,11 @@ func main() {
 		log.SetOutput(debugLogFile)
 	}
 
+	if *discoveryPort {
+		discoveryMysqldPort()
+		log.Fatalln("discovery Mysqld Port done, exit.")
+	}
+
 	//param preprocessing
 	{
 		if *user == "" || *pass == "" {
@@ -88,27 +97,32 @@ func main() {
 	// check cache
 	var cacheFile *os.File
 	{
-		cacheFilePath := *cacheDir + "/actiontech_" + *host + "-mysql_zabbix_stats.txt"
+		cacheFilePath := *cacheDir + "/actiontech_" + *host + "_" + *port + "-mysql_zabbix_stats.txt"
 		log.Printf("cacheFilePath = %s\n", cacheFilePath)
 		if !(*nocache) {
 			var err error
 			cacheFile, err = checkCache(cacheFilePath)
 			if nil != err {
-				log.Printf("checkCache err:%s\n", err)
+				log.Fatalf("checkCache err:%s\n", err)
 			}
 			defer cacheFile.Close()
 		} else {
 			log.Println("Caching is disabled.")
 		}
+
+		// print item
+		if !(*nocache) && (*items != "") && (cacheFile == nil) {
+			printItemFromCacheFile(*items, cacheFilePath)
+			log.Fatalln("read from cache file done.")
+		}
 	}
 
-	collectionExist, collectionInfo := collection()
+	collectionExist, collectionInfo := collect()
 	result := parse(collectionExist, collectionInfo)
 	print(result, cacheFile)
-
 }
 
-func collection() ([]bool, []map[string]string) {
+func collect() ([]bool, []map[string]string) {
 	// Connect to MySQL.
 	var db *sql.DB
 	if mysqlSsl {
@@ -128,17 +142,24 @@ func collection() ([]bool, []map[string]string) {
 	// Collecting ...
 	collectionInfo := make([]map[string]string, 7)
 	collectionExist := []bool{true, true, false, false, false, false, false}
+
 	collectionInfo[SHOW_STATUS] = collectAllRowsToMap("variable_name", "value", db, "SHOW /*!50002 GLOBAL */ STATUS")
 	collectionInfo[SHOW_VARIABLES] = collectAllRowsToMap("variable_name", "value", db, "SHOW VARIABLES")
 	if *slave {
 		collectionExist[SHOW_SLAVE_STATUS] = true
 		collectionInfo[SHOW_SLAVE_STATUS] = make(map[string]string)
 		// Leverage lock-free SHOW SLAVE STATUS if available
-		stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], collectFirstRowAsMapValue("relay_log_space", "relay_log_space", db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS"))
-		stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], collectFirstRowAsMapValue("seconds_behind_master", "seconds_behind_master", db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS"))
-
-		//Check replication heartbeat, if present.
-		stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], getDelayFromHeartbeat(db))
+		queryResult := tryQueryIfAvailable(db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS")
+		if 0 == len(queryResult) {
+			log.Println("show slave empty, assume it is a master")
+		} else {
+			stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], changeKeyCase(queryResult[0]))
+			/*			stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], collectFirstRowAsMapValue("relay_log_space", "relay_log_space", db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS"))
+						stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], collectFirstRowAsMapValue("seconds_behind_master", "seconds_behind_master", db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS"))
+			*/
+			//Check replication heartbeat, if present.
+			stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], getDelayFromHeartbeat(db))
+		}
 		log.Println("collectionInfo slave: ", collectionInfo[SHOW_SLAVE_STATUS])
 	}
 
@@ -204,8 +225,25 @@ func parse(collectionExist []bool, collectionInfo []map[string]string) map[strin
 	}
 
 	if collectionExist[SHOW_SLAVE_STATUS] {
-		stat["relay_log_space"] = collectionInfo[SHOW_SLAVE_STATUS]["relay_log_space"]
-		stat["slave_lag"] = collectionInfo[SHOW_SLAVE_STATUS]["seconds_behind_master"]
+		if 0 == len(collectionInfo[SHOW_SLAVE_STATUS]) {
+			// it is a master, set running_slave = 1 to avoid "slave stop" trigger
+			log.Println("it is a master!set running_slave = 1")
+			stat["running_slave"] = "1"
+			stat["slave_lag"] = "0"
+		} else if collectionInfo[SHOW_SLAVE_STATUS]["slave_io_running"] == "Yes" && collectionInfo[SHOW_SLAVE_STATUS]["slave_sql_running"] == "Yes" {
+			stat["running_slave"] = "1"
+		} else {
+			stat["running_slave"] = "0"
+		}
+
+		if v, ok := collectionInfo[SHOW_SLAVE_STATUS]["relay_log_space"]; ok {
+			stat["relay_log_space"] = v
+		}
+
+		if v, ok := collectionInfo[SHOW_SLAVE_STATUS]["seconds_behind_master"]; ok {
+			stat["slave_lag"] = v
+		}
+
 		if v, ok := collectionInfo[SHOW_SLAVE_STATUS]["delay_from_heartbeat"]; ok {
 			stat["slave_lag"] = v
 		}
@@ -339,225 +377,226 @@ func parse(collectionExist []bool, collectionInfo []map[string]string) map[strin
 
 func print(result map[string]string, fp *os.File) {
 	// Define the variables to output.
-	key := map[string]string{
-		"Key_read_requests":          "gg",
-		"Key_reads":                  "gh",
-		"Key_write_requests":         "gi",
-		"Key_writes":                 "gj",
-		"history_list":               "gk",
-		"innodb_transactions":        "gl",
-		"read_views":                 "gm",
-		"current_transactions":       "gn",
-		"locked_transactions":        "go",
-		"active_transactions":        "gp",
-		"pool_size":                  "gq",
-		"free_pages":                 "gr",
-		"database_pages":             "gs",
-		"modified_pages":             "gt",
-		"pages_read":                 "gu",
-		"pages_created":              "gv",
-		"pages_written":              "gw",
-		"file_fsyncs":                "gx",
-		"file_reads":                 "gy",
-		"file_writes":                "gz",
-		"log_writes":                 "hg",
-		"pending_aio_log_ios":        "hh",
-		"pending_aio_sync_ios":       "hi",
-		"pending_buf_pool_flushes":   "hj",
-		"pending_chkp_writes":        "hk",
-		"pending_ibuf_aio_reads":     "hl",
-		"pending_log_flushes":        "hm",
-		"pending_log_writes":         "hn",
-		"pending_normal_aio_reads":   "ho",
-		"pending_normal_aio_writes":  "hp",
-		"ibuf_inserts":               "hq",
-		"ibuf_merged":                "hr",
-		"ibuf_merges":                "hs",
-		"spin_waits":                 "ht",
-		"spin_rounds":                "hu",
-		"os_waits":                   "hv",
-		"rows_inserted":              "hw",
-		"rows_updated":               "hx",
-		"rows_deleted":               "hy",
-		"rows_read":                  "hz",
-		"Table_locks_waited":         "ig",
-		"Table_locks_immediate":      "ih",
-		"Slow_queries":               "ii",
-		"Open_files":                 "ij",
-		"Open_tables":                "ik",
-		"Opened_tables":              "il",
-		"innodb_open_files":          "im",
-		"open_files_limit":           "in",
-		"table_cache":                "io",
-		"Aborted_clients":            "ip",
-		"Aborted_connects":           "iq",
-		"Max_used_connections":       "ir",
-		"Slow_launch_threads":        "is",
-		"Threads_cached":             "it",
-		"Threads_connected":          "iu",
-		"Threads_created":            "iv",
-		"Threads_running":            "iw",
-		"max_connections":            "ix",
-		"thread_cache_size":          "iy",
-		"Connections":                "iz",
-		"slave_running":              "jg",
-		"slave_stopped":              "jh",
-		"Slave_retried_transactions": "ji",
-		"slave_lag":                  "jj",
-		"Slave_open_temp_tables":     "jk",
-		"Qcache_free_blocks":         "jl",
-		"Qcache_free_memory":         "jm",
-		"Qcache_hits":                "jn",
-		"Qcache_inserts":             "jo",
-		"Qcache_lowmem_prunes":       "jp",
-		"Qcache_not_cached":          "jq",
-		"Qcache_queries_in_cache":    "jr",
-		"Qcache_total_blocks":        "js",
-		"query_cache_size":           "jt",
-		"Questions":                  "ju",
-		"Com_update":                 "jv",
-		"Com_insert":                 "jw",
-		"Com_select":                 "jx",
-		"Com_delete":                 "jy",
-		"Com_replace":                "jz",
-		"Com_load":                   "kg",
-		"Com_update_multi":           "kh",
-		"Com_insert_select":          "ki",
-		"Com_delete_multi":           "kj",
-		"Com_replace_select":         "kk",
-		"Select_full_join":           "kl",
-		"Select_full_range_join":     "km",
-		"Select_range":               "kn",
-		"Select_range_check":         "ko",
-		"Select_scan":                "kp",
-		"Sort_merge_passes":          "kq",
-		"Sort_range":                 "kr",
-		"Sort_rows":                  "ks",
-		"Sort_scan":                  "kt",
-		"Created_tmp_tables":         "ku",
-		"Created_tmp_disk_tables":    "kv",
-		"Created_tmp_files":          "kw",
-		"Bytes_sent":                 "kx",
-		"Bytes_received":             "ky",
-		"innodb_log_buffer_size":     "kz",
-		"unflushed_log":              "lg",
-		"log_bytes_flushed":          "lh",
-		"log_bytes_written":          "li",
-		"relay_log_space":            "lj",
-		"binlog_cache_size":          "lk",
-		"Binlog_cache_disk_use":      "ll",
-		"Binlog_cache_use":           "lm",
-		"binary_log_space":           "ln",
-		"innodb_locked_tables":       "lo",
-		"innodb_lock_structs":        "lp",
-		"State_closing_tables":       "lq",
-		"State_copying_to_tmp_table": "lr",
-		"State_end":                  "ls",
-		"State_freeing_items":        "lt",
-		"State_init":                 "lu",
-		"State_locked":               "lv",
-		"State_login":                "lw",
-		"State_preparing":            "lx",
-		"State_reading_from_net":     "ly",
-		"State_sending_data":         "lz",
-		"State_sorting_result":       "mg",
-		"State_statistics":           "mh",
-		"State_updating":             "mi",
-		"State_writing_to_net":       "mj",
-		"State_none":                 "mk",
-		"State_other":                "ml",
-		"Handler_commit":             "mm",
-		"Handler_delete":             "mn",
-		"Handler_discover":           "mo",
-		"Handler_prepare":            "mp",
-		"Handler_read_first":         "mq",
-		"Handler_read_key":           "mr",
-		"Handler_read_next":          "ms",
-		"Handler_read_prev":          "mt",
-		"Handler_read_rnd":           "mu",
-		"Handler_read_rnd_next":      "mv",
-		"Handler_rollback":           "mw",
-		"Handler_savepoint":          "mx",
-		"Handler_savepoint_rollback": "my",
-		"Handler_update":             "mz",
-		"Handler_write":              "ng",
-		"innodb_tables_in_use":       "nh",
-		"innodb_lock_wait_secs":      "ni",
-		"hash_index_cells_total":     "nj",
-		"hash_index_cells_used":      "nk",
-		"total_mem_alloc":            "nl",
-		"additional_pool_alloc":      "nm",
-		"uncheckpointed_bytes":       "nn",
-		"ibuf_used_cells":            "no",
-		"ibuf_free_cells":            "np",
-		"ibuf_cell_count":            "nq",
-		"adaptive_hash_memory":       "nr",
-		"page_hash_memory":           "ns",
-		"dictionary_cache_memory":    "nt",
-		"file_system_memory":         "nu",
-		"lock_system_memory":         "nv",
-		"recovery_system_memory":     "nw",
-		"thread_hash_memory":         "nx",
-		"innodb_sem_waits":           "ny",
-		"innodb_sem_wait_time_ms":    "nz",
-		"Key_buf_bytes_unflushed":    "og",
-		"Key_buf_bytes_used":         "oh",
-		"key_buffer_size":            "oi",
-		"Innodb_row_lock_time":       "oj",
-		"Innodb_row_lock_waits":      "ok",
-		"Query_time_count_00":        "ol",
-		"Query_time_count_01":        "om",
-		"Query_time_count_02":        "on",
-		"Query_time_count_03":        "oo",
-		"Query_time_count_04":        "op",
-		"Query_time_count_05":        "oq",
-		"Query_time_count_06":        "or",
-		"Query_time_count_07":        "os",
-		"Query_time_count_08":        "ot",
-		"Query_time_count_09":        "ou",
-		"Query_time_count_10":        "ov",
-		"Query_time_count_11":        "ow",
-		"Query_time_count_12":        "ox",
-		"Query_time_count_13":        "oy",
-		"Query_time_total_00":        "oz",
-		"Query_time_total_01":        "pg",
-		"Query_time_total_02":        "ph",
-		"Query_time_total_03":        "pi",
-		"Query_time_total_04":        "pj",
-		"Query_time_total_05":        "pk",
-		"Query_time_total_06":        "pl",
-		"Query_time_total_07":        "pm",
-		"Query_time_total_08":        "pn",
-		"Query_time_total_09":        "po",
-		"Query_time_total_10":        "pp",
-		"Query_time_total_11":        "pq",
-		"Query_time_total_12":        "pr",
-		"Query_time_total_13":        "ps",
-		"wsrep_replicated_bytes":     "pt",
-		"wsrep_received_bytes":       "pu",
-		"wsrep_replicated":           "pv",
-		"wsrep_received":             "pw",
-		"wsrep_local_cert_failures":  "px",
-		"wsrep_local_bf_aborts":      "py",
-		"wsrep_local_send_queue":     "pz",
-		"wsrep_local_recv_queue":     "qg",
-		"wsrep_cluster_size":         "qh",
-		"wsrep_cert_deps_distance":   "qi",
-		"wsrep_apply_window":         "qj",
-		"wsrep_commit_window":        "qk",
-		"wsrep_flow_control_paused":  "ql",
-		"wsrep_flow_control_sent":    "qm",
-		"wsrep_flow_control_recv":    "qn",
-		"pool_reads":                 "qo",
-		"pool_read_requests":         "qp",
+	key := []string{
+		"Key_read_requests",
+		"Key_reads",
+		"Key_write_requests",
+		"Key_writes",
+		"history_list",
+		"innodb_transactions",
+		"read_views",
+		"current_transactions",
+		"locked_transactions",
+		"active_transactions",
+		"pool_size",
+		"free_pages",
+		"database_pages",
+		"modified_pages",
+		"pages_read",
+		"pages_created",
+		"pages_written",
+		"file_fsyncs",
+		"file_reads",
+		"file_writes",
+		"log_writes",
+		"pending_aio_log_ios",
+		"pending_aio_sync_ios",
+		"pending_buf_pool_flushes",
+		"pending_chkp_writes",
+		"pending_ibuf_aio_reads",
+		"pending_log_flushes",
+		"pending_log_writes",
+		"pending_normal_aio_reads",
+		"pending_normal_aio_writes",
+		"ibuf_inserts",
+		"ibuf_merged",
+		"ibuf_merges",
+		"spin_waits",
+		"spin_rounds",
+		"os_waits",
+		"rows_inserted",
+		"rows_updated",
+		"rows_deleted",
+		"rows_read",
+		"Table_locks_waited",
+		"Table_locks_immediate",
+		"Slow_queries",
+		"Open_files",
+		"Open_tables",
+		"Opened_tables",
+		"innodb_open_files",
+		"open_files_limit",
+		"table_cache",
+		"Aborted_clients",
+		"Aborted_connects",
+		"Max_used_connections",
+		"Slow_launch_threads",
+		"Threads_cached",
+		"Threads_connected",
+		"Threads_created",
+		"Threads_running",
+		"max_connections",
+		"thread_cache_size",
+		"Connections",
+		"slave_running",
+		"slave_stopped",
+		"Slave_retried_transactions",
+		"slave_lag",
+		"Slave_open_temp_tables",
+		"Qcache_free_blocks",
+		"Qcache_free_memory",
+		"Qcache_hits",
+		"Qcache_inserts",
+		"Qcache_lowmem_prunes",
+		"Qcache_not_cached",
+		"Qcache_queries_in_cache",
+		"Qcache_total_blocks",
+		"query_cache_size",
+		"Questions",
+		"Com_update",
+		"Com_insert",
+		"Com_select",
+		"Com_delete",
+		"Com_replace",
+		"Com_load",
+		"Com_update_multi",
+		"Com_insert_select",
+		"Com_delete_multi",
+		"Com_replace_select",
+		"Select_full_join",
+		"Select_full_range_join",
+		"Select_range",
+		"Select_range_check",
+		"Select_scan",
+		"Sort_merge_passes",
+		"Sort_range",
+		"Sort_rows",
+		"Sort_scan",
+		"Created_tmp_tables",
+		"Created_tmp_disk_tables",
+		"Created_tmp_files",
+		"Bytes_sent",
+		"Bytes_received",
+		"innodb_log_buffer_size",
+		"unflushed_log",
+		"log_bytes_flushed",
+		"log_bytes_written",
+		"relay_log_space",
+		"binlog_cache_size",
+		"Binlog_cache_disk_use",
+		"Binlog_cache_use",
+		"binary_log_space",
+		"innodb_locked_tables",
+		"innodb_lock_structs",
+		"State_closing_tables",
+		"State_copying_to_tmp_table",
+		"State_end",
+		"State_freeing_items",
+		"State_init",
+		"State_locked",
+		"State_login",
+		"State_preparing",
+		"State_reading_from_net",
+		"State_sending_data",
+		"State_sorting_result",
+		"State_statistics",
+		"State_updating",
+		"State_writing_to_net",
+		"State_none",
+		"State_other",
+		"Handler_commit",
+		"Handler_delete",
+		"Handler_discover",
+		"Handler_prepare",
+		"Handler_read_first",
+		"Handler_read_key",
+		"Handler_read_next",
+		"Handler_read_prev",
+		"Handler_read_rnd",
+		"Handler_read_rnd_next",
+		"Handler_rollback",
+		"Handler_savepoint",
+		"Handler_savepoint_rollback",
+		"Handler_update",
+		"Handler_write",
+		"innodb_tables_in_use",
+		"innodb_lock_wait_secs",
+		"hash_index_cells_total",
+		"hash_index_cells_used",
+		"total_mem_alloc",
+		"additional_pool_alloc",
+		"uncheckpointed_bytes",
+		"ibuf_used_cells",
+		"ibuf_free_cells",
+		"ibuf_cell_count",
+		"adaptive_hash_memory",
+		"page_hash_memory",
+		"dictionary_cache_memory",
+		"file_system_memory",
+		"lock_system_memory",
+		"recovery_system_memory",
+		"thread_hash_memory",
+		"innodb_sem_waits",
+		"innodb_sem_wait_time_ms",
+		"Key_buf_bytes_unflushed",
+		"Key_buf_bytes_used",
+		"key_buffer_size",
+		"Innodb_row_lock_time",
+		"Innodb_row_lock_waits",
+		"Query_time_count_00",
+		"Query_time_count_01",
+		"Query_time_count_02",
+		"Query_time_count_03",
+		"Query_time_count_04",
+		"Query_time_count_05",
+		"Query_time_count_06",
+		"Query_time_count_07",
+		"Query_time_count_08",
+		"Query_time_count_09",
+		"Query_time_count_10",
+		"Query_time_count_11",
+		"Query_time_count_12",
+		"Query_time_count_13",
+		"Query_time_total_00",
+		"Query_time_total_01",
+		"Query_time_total_02",
+		"Query_time_total_03",
+		"Query_time_total_04",
+		"Query_time_total_05",
+		"Query_time_total_06",
+		"Query_time_total_07",
+		"Query_time_total_08",
+		"Query_time_total_09",
+		"Query_time_total_10",
+		"Query_time_total_11",
+		"Query_time_total_12",
+		"Query_time_total_13",
+		"wsrep_replicated_bytes",
+		"wsrep_received_bytes",
+		"wsrep_replicated",
+		"wsrep_received",
+		"wsrep_local_cert_failures",
+		"wsrep_local_bf_aborts",
+		"wsrep_local_send_queue",
+		"wsrep_local_recv_queue",
+		"wsrep_cluster_size",
+		"wsrep_cert_deps_distance",
+		"wsrep_apply_window",
+		"wsrep_commit_window",
+		"wsrep_flow_control_paused",
+		"wsrep_flow_control_sent",
+		"wsrep_flow_control_recv",
+		"pool_reads",
+		"pool_read_requests",
+		"running_slave",
 	}
 
 	// Return the output.
 	output := make(map[string]string)
-	for k, v := range key {
+	for _, v := range key {
 		// If the value isn't defined, return -1 which is lower than (most graphs')
 		// minimum value of 0, so it'll be regarded as a missing value.
-		if val, ok := result[k]; ok {
+		if val, ok := result[v]; ok {
 			output[v] = val
 		} else {
 			output[v] = "-1"
@@ -566,9 +605,11 @@ func print(result map[string]string, fp *os.File) {
 
 	if fp != nil {
 		log.Println("write file:")
-		for k, v := range output {
-			fmt.Fprintf(fp, "%v:%v ", k, v)
-		}
+		enc := json.NewEncoder(fp)
+		enc.Encode(output)
+		/*		for k, v := range output {
+				fmt.Fprintf(fp, "%v:%v ", k, v)
+			}*/
 	}
 
 	if *items != "" {
@@ -583,6 +624,25 @@ func print(result map[string]string, fp *os.File) {
 
 	}
 
+}
+
+func printItemFromCacheFile(items string, filename string) {
+	var data map[string]string
+	f, err := ioutil.ReadFile(filename)
+	if err != nil {
+		log.Fatalln("printItemFromCacheFile ReadFile err:", err)
+	}
+	if err := json.Unmarshal(f, &data); err != nil {
+		log.Fatalln("printItemFromCacheFile decode json err:", err)
+	}
+	fields := strings.Split(items, ",")
+	for _, field := range fields {
+		if val, ok := data[field]; ok {
+			fmt.Println(field, ":", val)
+		} else {
+			fmt.Println(field + " do not exist")
+		}
+	}
 }
 
 func getDelayFromHeartbeat(db *sql.DB) map[string]string {
@@ -671,7 +731,7 @@ func tryQueryIfAvailable(db *sql.DB, querys ...string) []map[string]string {
 	return result
 }
 
-// collect two columns value as map
+// collect two columns value to map
 func collectAllRowsToMap(keyColName string, valueColName string, db *sql.DB, querys ...string) map[string]string {
 	result := make(map[string]string)
 	for _, mp := range tryQueryIfAvailable(db, querys...) {
@@ -682,6 +742,7 @@ func collectAllRowsToMap(keyColName string, valueColName string, db *sql.DB, que
 	return result
 }
 
+// collect one column value as mapValue in the first row
 func collectFirstRowAsMapValue(key string, valueColName string, db *sql.DB, querys ...string) map[string]string {
 	result := make(map[string]string)
 	queryResult := tryQueryIfAvailable(db, querys...)
@@ -698,6 +759,7 @@ func collectFirstRowAsMapValue(key string, valueColName string, db *sql.DB, quer
 	return result
 }
 
+// collect one column value as mapValue in all rows
 func collectAllRowsAsMapValue(preKey string, valueColName string, db *sql.DB, querys ...string) map[string]string {
 	result := make(map[string]string)
 	for i, mp := range tryQueryIfAvailable(db, querys...) {
@@ -711,7 +773,7 @@ func collectAllRowsAsMapValue(preKey string, valueColName string, db *sql.DB, qu
 	return result
 }
 
-// collect lines rows
+// collect one column value as mapValue in pre lines rows
 func collectRowsAsMapValue(preKey string, valueColName string, lines int, db *sql.DB, querys ...string) map[string]string {
 	result := make(map[string]string)
 	line := 0
@@ -741,7 +803,11 @@ func collectRowsAsMapValue(preKey string, valueColName string, lines int, db *sq
 }
 
 func parseInnodbStatusWithRule(status string) map[string]int64 {
-	result := make(map[string]int64)
+	result := map[string]int64{
+		"current_transactions": 0,
+		"active_transactions":  0,
+		"locked_transactions":  0,
+	}
 	txnSeen := false
 	preField := ""
 	fields := strings.Split(status, "\n")
@@ -1156,4 +1222,28 @@ func changeKeyCase(m map[string]string) map[string]string {
 		lowerMap[strings.ToLower(k)] = v
 	}
 	return lowerMap
+}
+
+func discoveryMysqldPort() {
+	data := make([]map[string]string, 0)
+	enc := json.NewEncoder(os.Stdout)
+	cmd := "netstat -ntlp |awk -F '[ :]+' '/mysqld/{print $4}'"
+	log.Println("discoveryMysqldPort:find mysql port cmd:", cmd)
+	out, err := exec.Command("/bin/sh", "-c", cmd).CombinedOutput()
+	log.Println("discoveryMysqldPort:cmd out:", string(out))
+	if nil != err {
+		fmt.Println(err)
+	}
+	fields := strings.Split(strings.TrimRight(string(out), "\n"), "\n")
+	for _, field := range fields {
+		mp := map[string]string{
+			"{#MYSQLPORT}": field,
+		}
+		data = append(data, mp)
+	}
+
+	formatData := map[string][]map[string]string{
+		"data": data,
+	}
+	enc.Encode(formatData)
 }
