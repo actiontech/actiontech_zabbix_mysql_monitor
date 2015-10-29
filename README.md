@@ -3,19 +3,24 @@
 percona monitoring plugins zabbix的go语言版本
 
 ## 1. item取值与percona版本差异
-
+使用mysqld端口自动发现相关item（zabbix Low level discovery）  
  - innodb_transactions  
-取值方法：SHOW /\*!50000 ENGINE*/ INNODB STATUS,可得行Trx id counter 861144，取值861144  
+取值方法：`SHOW /\*!50000 ENGINE*/ INNODB STATUS`,可得行Trx id counter 861144，取值861144  
 percona将861144作为十六进制字符解析，actiontech版本将861144作为十进制字符解析
  - unpurged_txns：  
-取值方法：SHOW /\*!50000 ENGINE*/ INNODB STATUS,可得行Purge done for trx's n:o < 861135 undo n:o < 0，取值861135  
+取值方法：`SHOW /\*!50000 ENGINE*/ INNODB STATUS`,可得行`Purge done for trx's n:o < 861135 undo n:o < 0`，取值861135  
 percona将861135作为十六进制字符解析，actiontech版本将861135作为十进制字符解析 
  - running_slave，slave_lag:  
-取值方法：如果SHOW SLAVE STATUS为空，认为该mysql为master，设置running_slave=1，slave_lag=0；如果SHOW SLAVE STATUS不为空，与percona处理相同，依据slave_io_running及slave_sql_running等具体参数值设置 
+取值方法：如果`SHOW SLAVE STATUS`为空，认为该mysql为master，设置running_slave=1，slave_lag=0；如果`SHOW SLAVE STATUS`不为空，与percona处理相同，依据slave_io_running及slave_sql_running等具体参数值设置
+ - 增加mysqld_port_listen  
+取值方法：`netstat -ntlp |awk -F '[ :]+|/' '$4~/^port$/{print $8}'`其中port为参数传入值   
+若上述命令结果等于`mysqld`，则值为1，反之为0  
 
 ## 2. trigger与percona版本差异
-- 增加max-connections less than 4999
-- 增加Open-files-limit less than 65534
+- 增加MySQL {#MYSQLPORT} max_connections less than 4999 on {HOST.NAME}  
+- 增加MySQL {#MYSQLPORT} Open_files_limit less than 65534 on {HOST.NAME}  
+- 增加MySQL {#MYSQLPORT} port is not in listen state on {HOST.NAME}  
+- 增加{#MYSQLPORT} port is not mysqld on {HOST.NAME}  
 
 ## 3. 限制
 - 暂不支持mysql ssl连接方式
@@ -24,7 +29,8 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
 ## 4. 安装
 1. 安装zabbix-agent  
 2. 执行install.sh  
-//install.sh作用仅为拷贝文件至默认路径，可调整  
+//请检查确保/etc/sudoers中包含#includedir /etc/sudoers.d
+//install.sh作用仅为拷贝文件至默认路径，可自行调整  
 3. 创建采集mysql状态信息的用户  
 `mysql> grant process,select,replication client on *.* to zbx@’127.0.0.1’ identified by 'zabbix';`   
 4. 拷贝  
@@ -37,6 +43,10 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
 //被监控mysql最大连接数  
 `sudo -u zabbix -H /var/lib/zabbix/actiontech/scripts/actiontech_mysql_monitor --host 127.0.0.1 --user zbx --pass zabbix --items running_slave`  
 //主从复制状态  
+`sudo -u zabbix -H /var/lib/zabbix/actiontech/scripts/actiontech_mysql_monitor --discovery_port true`   
+//json格式的mysqld端口占用   
+`sudo -u zabbix -H /var/lib/zabbix/actiontech/scripts/actiontech_mysql_monitor --port 3306 --items mysqld_port_listen`  
+//3306端口是否被mysqld占用  
 6. zabbix server导入配置模板actiontech_zabbix_agent_template_percona_mysql_server.xml， 添加主机、模板，开始监控  
 
 
@@ -279,6 +289,7 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
 |		pool_reads|                 Innodb_buffer_pool_reads|
 |		pool_read_requests|         Innodb_buffer_pool_read_requests|
 |		running_slave|              SHOW SLAVE STATUS|
+|       mysqld_port_listen|         netstat -ntlp    |
 
 
 
@@ -288,16 +299,17 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
 | trigger名        |触发器表达式   |
 | ------------- | -----| 
 |MySQL is down on {HOST.NAME}|{proc.num[mysqld].last(0)}=0|
-|MySQL connections utilization more than 95% on {HOST.NAME}|{MySQL.Threads-connected.last(0)}/{MySQL.max-connections.last(0)}>0.95|
-|MySQL connections utilization more than 80% on {HOST.NAME}|{MySQL.Threads-connected.last(0)}/{MySQL.max-connections.last(0)}>0.8|
-|MySQL active threads more than 100 on {HOST.NAME}|{MySQL.Threads-running.last(0)}>100|
-|MySQL active threads more than 40 on {HOST.NAME}|{MySQL.Threads-running.last(0)}>40|
-|MySQL slave lag more than 600 on {HOST.NAME}|{MySQL.slave-lag.last(0)}>600|
-|MySQL slave lag more than 300 on {HOST.NAME}|{MySQL.slave-lag.last(0)}>300|
-|Slave is stopped on {HOST.NAME}|{MySQL.running-slave.last(0)}=0|
-|MySQL max-connections less than 4999 on {HOST.NAME}|{MySQL.max-connections.last(0)}<4999|
-|MySQL Open-files-limit less than 65534 on {HOST.NAME}|{MySQL.Open-files-limit.last(0)}<65534|
-
+|MySQL {#MYSQLPORT} connections utilization more than 95% on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}>0.95|
+|MySQL {#MYSQLPORT} connections utilization more than 80% on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}>0.8|
+|MySQL {#MYSQLPORT} active threads more than 100 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_running].last(0)}>100|
+|MySQL {#MYSQLPORT} active threads more than 40 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_running].last(0)}>40|
+|MySQL {#MYSQLPORT} slave lag more than 600 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},slave_lag].last(0)}>600|
+|MySQL {#MYSQLPORT} slave lag more than 300 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},slave_lag].last(0)}>300|
+|Slave {#MYSQLPORT} is stopped on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},running_slave].last(0)}=0|
+|MySQL {#MYSQLPORT} max_connections less than 4999 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}<4999|
+|MySQL {#MYSQLPORT} Open_files_limit less than 65534 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},open_files_limit].last(0)}<65534|
+|MySQL {#MYSQLPORT} port is not in listen state on {HOST.NAME}|{Actiontech MySQL Server Template:net.tcp.listen[{#MYSQLPORT}].last(0)}=0|
+|{#MYSQLPORT} port is not mysqld on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},mysqld_port_listen].last(0)}=0|
 
 ## 8. issues
 - 欢迎在issues中提出任何使用问题

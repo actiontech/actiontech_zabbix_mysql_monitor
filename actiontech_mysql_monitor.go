@@ -38,7 +38,7 @@ var (
 	user              = flag.String("user", "", "`MySQL username` (default: no default)")
 	pass              = flag.String("pass", "", "`MySQL password` (default: no default)")
 	port              = flag.String("port", "3306", "`MySQL port`")
-	pollTime          = flag.Int("poll_time", 300, "Adjust to match your `polling interval`.if change, make sure change the wrapper.sh file too.")
+	pollTime          = flag.Int("poll_time", 30, "Adjust to match your `polling interval`.if change, make sure change the wrapper.sh file too.")
 	nocache           = flag.Bool("nocache", false, "Do not cache results in a file (default: false)")
 	items             = flag.String("items", "", "-items <`item`,...> Comma-separated list of the items whose data you want (default: no default)")
 	debugLog          = flag.String("debug_log", "", "If `debuglog` is a filename, it'll be used. (default: no default)")
@@ -53,6 +53,7 @@ var (
 	procs             = flag.Bool("procs", true, "Whether to check SHOW PROCESSLIST (default: true)")
 	getQrt            = flag.Bool("get_qrt", true, "Whether to get response times from Percona Server or MariaDB (default: true)")
 	discoveryPort     = flag.Bool("discovery_port", false, "`discovery mysqld port`, print in json format")
+	useSudo           = flag.Bool("sudo", true, "Use `sudo netstat...`")
 
 	// log
 	debugLogFile *os.File
@@ -82,6 +83,16 @@ func main() {
 	if *discoveryPort {
 		discoveryMysqldPort()
 		log.Fatalln("discovery Mysqld Port done, exit.")
+	}
+
+	if *items == "mysqld_port_listen" {
+		// default port: 3306
+		if verifyMysqldPort(*port) {
+			fmt.Println(*port, ":", 1)
+		} else {
+			fmt.Println(*port, ":", 0)
+		}
+		log.Fatalln("verify Mysqld Port done, exit.")
 	}
 
 	//param preprocessing
@@ -1227,12 +1238,15 @@ func changeKeyCase(m map[string]string) map[string]string {
 func discoveryMysqldPort() {
 	data := make([]map[string]string, 0)
 	enc := json.NewEncoder(os.Stdout)
-	cmd := "netstat -ntlp |awk -F '[ :]+' '/mysqld/{print $4}'"
+	cmd := "netstat -ntlp |awk -F '[ :]+' '/\\/mysqld[ $]/{print $4}'"
+	if *useSudo {
+		cmd = "sudo " + cmd
+	}
 	log.Println("discoveryMysqldPort:find mysql port cmd:", cmd)
-	out, err := exec.Command("/bin/sh", "-c", cmd).CombinedOutput()
+	out, err := exec.Command("sh", "-c", cmd).Output()
 	log.Println("discoveryMysqldPort:cmd out:", string(out))
 	if nil != err {
-		fmt.Println(err)
+		log.Println("discoveryMysqldPort err:", err)
 	}
 	fields := strings.Split(strings.TrimRight(string(out), "\n"), "\n")
 	for _, field := range fields {
@@ -1246,4 +1260,21 @@ func discoveryMysqldPort() {
 		"data": data,
 	}
 	enc.Encode(formatData)
+}
+
+func verifyMysqldPort(port string) bool {
+	cmd := "netstat -ntlp |awk -F '[ :]+|/' '$4~/^" + port + "$/{print $8}'"
+	if *useSudo {
+		cmd = "sudo " + cmd
+	}
+	log.Println("verifyMysqldPort:find port Program name cmd:", cmd)
+	out, err := exec.Command("sh", "-c", cmd).Output()
+	log.Println("verifyMysqldPort:cmd out:", string(out))
+	if nil != err {
+		log.Println("verifyMysqldPort err:", err)
+	}
+	if string(out) == "mysqld\n" {
+		return true
+	}
+	return false
 }
