@@ -56,6 +56,7 @@ var (
 	getQrtMysql       = flag.Bool("get_qrt_mysql", false, "Whether to get response times from MySQL (default: false)")
 	discoveryPort     = flag.Bool("discovery_port", false, "`discovery mysqld port`, print in json format (default: false)")
 	useSudo           = flag.Bool("sudo", true, "Use `sudo netstat...`")
+	version           = flag.Bool("version", false, "print version")
 
 	// log
 	debugLogFile *os.File
@@ -63,10 +64,17 @@ var (
 	//regexps
 	regSpaces  = regexp.MustCompile("\\s+")
 	regNumbers = regexp.MustCompile("\\d+")
+
+	Version string
 )
 
 func main() {
 	flag.Parse()
+
+	if *version {
+		fmt.Println("version:", Version)
+		os.Exit(1)
+	}
 
 	//debug file
 	{

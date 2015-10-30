@@ -72,7 +72,7 @@ select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_
 
 - actiontech_mysql_monitor  
 默认路径：`/var/lib/zabbix/actiontech/scripts/actiontech_mysql_monitor`  
-备注：二进制可执行文件，可单独使用（actiontech_mysql_monitor --help）
+备注：二进制可执行文件，可单独使用（actiontech_mysql_monitor --help查看帮助actiontech_mysql_monitor --version查询版本） 
 - userparameter_actiontech_mysql.conf  
 默认路径：`/var/lib/zabbix/actiontech/templates/userparameter_actiontech_mysql.conf`  
 备注：zabbix-agent的key配置文件  
