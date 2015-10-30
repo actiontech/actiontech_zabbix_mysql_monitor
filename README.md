@@ -2,6 +2,8 @@
 
 percona monitoring plugins zabbix的go语言版本
 
+## 0. 版本下载使用0.1分支  
+
 ## 1. item取值与percona版本差异
 使用mysqld端口自动发现相关item（zabbix Low level discovery）  
  - innodb_transactions  
