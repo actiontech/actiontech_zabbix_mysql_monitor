@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2015-10-30T07:07:28Z</date>
+    <date>2015-10-30T10:01:57Z</date>
     <groups>
         <group>
             <name>Actiontech Templates</name>
@@ -8711,7 +8711,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_running].last(0)}&gt;40</expression>
+                            <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_running].last(0)}&gt;40 and {Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_running].last(0)}&lt;=100</expression>
                             <name>MySQL {#MYSQLPORT} active threads more than 40 on {HOST.NAME}</name>
                             <url/>
                             <status>0</status>
@@ -8729,7 +8729,7 @@
                             <type>0</type>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}&gt;0.8</expression>
+                            <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}&gt;0.8 and {Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}&lt;= 0.95</expression>
                             <name>MySQL {#MYSQLPORT} connections utilization more than 80% on {HOST.NAME}</name>
                             <url/>
                             <status>0</status>
@@ -8774,7 +8774,7 @@
                             <type>0</type>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},slave_lag].last(0)}&gt;300</expression>
+                            <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},slave_lag].last(0)}&gt;300 and {Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},slave_lag].last(0)} &lt;= 600</expression>
                             <name>MySQL {#MYSQLPORT} slave lag more than 300 on {HOST.NAME}</name>
                             <url/>
                             <status>0</status>
