@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2015-10-29T09:27:06Z</date>
+    <date>2015-10-30T07:07:28Z</date>
     <groups>
         <group>
             <name>Actiontech Templates</name>
@@ -3506,6 +3506,49 @@
                             <logtimefmt/>
                         </item_prototype>
                         <item_prototype>
+                            <name>MySQL Average response time on $1</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>MySQL.[{#MYSQLPORT},query_avgrt]</key>
+                            <delay>30</delay>
+                            <history>90</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>ms</units>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>MySQL</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
                             <name>Mysqld port listen on $1</name>
                             <type>0</type>
                             <snmp_community/>
@@ -3582,6 +3625,264 @@
                             <privatekey/>
                             <port/>
                             <description>MySQL Open files limit</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>MySQL</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MySQL Query Response Time 1ms on $1</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>MySQL.[{#MYSQLPORT},query_rt1ms]</key>
+                            <delay>30</delay>
+                            <history>90</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>MySQL</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MySQL Query Response Time 1s on $1</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>MySQL.[{#MYSQLPORT},query_rt1s]</key>
+                            <delay>30</delay>
+                            <history>90</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>MySQL</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MySQL Query Response Time 10ms on $1</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>MySQL.[{#MYSQLPORT},query_rt10ms]</key>
+                            <delay>30</delay>
+                            <history>90</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>MySQL</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MySQL Query Response Time 10s on $1</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>MySQL.[{#MYSQLPORT},query_rt10s]</key>
+                            <delay>30</delay>
+                            <history>90</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>MySQL</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MySQL Query Response Time 100ms on $1</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>MySQL.[{#MYSQLPORT},query_rt100ms]</key>
+                            <delay>30</delay>
+                            <history>90</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>MySQL</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>MySQL Query Response Time 100s on $1</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>MySQL.[{#MYSQLPORT},query_rt100s]</key>
+                            <delay>30</delay>
+                            <history>90</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -10975,14 +11276,14 @@
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
-                            <name>MySQL Query Time Histogram (Count) on {#MYSQLPORT}</name>
+                            <name>MySQL Query Response Time Histogram (Count) on {#MYSQLPORT}</name>
                             <width>900</width>
-                            <height>200</height>
+                            <height>600</height>
                             <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
+                            <yaxismax>0.0000</yaxismax>
+                            <show_work_period>0</show_work_period>
+                            <show_triggers>0</show_triggers>
+                            <type>2</type>
                             <show_legend>1</show_legend>
                             <show_3d>0</show_3d>
                             <percent_left>0.0000</percent_left>
@@ -10994,170 +11295,74 @@
                             <graph_items>
                                 <graph_item>
                                     <sortorder>0</sortorder>
-                                    <drawtype>1</drawtype>
-                                    <color>DE0056</color>
+                                    <drawtype>0</drawtype>
+                                    <color>00C800</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
                                         <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_00]</key>
+                                        <key>MySQL.[{#MYSQLPORT},query_rt1ms]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>1</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>784890</color>
+                                    <color>C80000</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
                                         <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_01]</key>
+                                        <key>MySQL.[{#MYSQLPORT},query_rt1s]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>2</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>D1642E</color>
+                                    <color>0000C8</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
                                         <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_02]</key>
+                                        <key>MySQL.[{#MYSQLPORT},query_rt10ms]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>3</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>487860</color>
+                                    <color>C800C8</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
                                         <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_03]</key>
+                                        <key>MySQL.[{#MYSQLPORT},query_rt10s]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>4</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>907890</color>
+                                    <color>00C8C8</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
                                         <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_04]</key>
+                                        <key>MySQL.[{#MYSQLPORT},query_rt100ms]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>5</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>DE0056</color>
+                                    <color>C8C800</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
                                         <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_05]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>6</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>1693A7</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_06]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>7</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>783030</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_07]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>8</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>FF7F00</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_08]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>9</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>54382A</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_09]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>10</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>B83A04</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_10]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>11</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>6E3803</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_11]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>12</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>B56414</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_12]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>13</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>6E645A</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Actiontech MySQL Server Template</host>
-                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_13]</key>
+                                        <key>MySQL.[{#MYSQLPORT},query_rt100s]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -11670,6 +11875,194 @@
                                     <item>
                                         <host>Actiontech MySQL Server Template</host>
                                         <key>MySQL.[{#MYSQLPORT},Handler_savepoint_rollback]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>Percona Query Time Histogram (Count) on {#MYSQLPORT}</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0.0000</yaxismin>
+                            <yaxismax>100.0000</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>1</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0.0000</percent_left>
+                            <percent_right>0.0000</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>1</drawtype>
+                                    <color>DE0056</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_00]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>784890</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_01]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>D1642E</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_02]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>487860</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_03]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>907890</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_04]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>5</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>DE0056</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_05]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>6</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>1693A7</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_06]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>7</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>783030</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_07]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>8</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>FF7F00</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_08]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>9</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>54382A</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_09]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>10</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>B83A04</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_10]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>11</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>6E3803</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_11]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>12</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>B56414</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_12]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>13</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>6E645A</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Actiontech MySQL Server Template</host>
+                                        <key>MySQL.[{#MYSQLPORT},Query_time_count_13]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -12582,7 +12975,29 @@
                             <dynamic>1</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>MySQL Query Time Histogram (Count) on {#MYSQLPORT}</name>
+                                <name>Percona Query Time Histogram (Count) on {#MYSQLPORT}</name>
+                                <host>Actiontech MySQL Server Template</host>
+                            </resource>
+                            <max_columns>3</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>20</resourcetype>
+                            <width>500</width>
+                            <height>120</height>
+                            <x>1</x>
+                            <y>21</y>
+                            <colspan>1</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>25</elements>
+                            <valign>1</valign>
+                            <halign>0</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>1</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>MySQL Query Response Time Histogram (Count) on {#MYSQLPORT}</name>
                                 <host>Actiontech MySQL Server Template</host>
                             </resource>
                             <max_columns>3</max_columns>

@@ -15,6 +15,15 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
  - 增加mysqld_port_listen  
 取值方法：`netstat -ntlp |awk -F '[ :]+|/' '$4~/^port$/{print $8}'`其中port为参数传入值   
 若上述命令结果等于`mysqld`，则值为1，反之为0  
+ - 增加query_rt100s、query_rt10s、query_rt1s、query_rt100ms、query_rt10ms、query_rt1ms(默认关闭，设置get_qrt_mysql参数可开启)  
+取值方法`select 'query_rt100s' as rt ,count(*) as count from performance_schema.events_statements_summary_by_digest where AVG_TIMER_WAIT >=  100000000000000 union
+select 'query_rt10s',count(*) from performance_schema.events_statements_summary_by_digest where AVG_TIMER_WAIT between  10000000000000 and 10000000000000 union
+select 'query_rt1s',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between  1000000000000 and 10000000000000 union
+select 'query_rt100ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between 100000000000 and 1000000000000 union
+select 'query_rt10ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between 10000000000 and 100000000000 union
+select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT <= 1000000000`  
+ - 增加query_avgrt(默认关闭，设置get_qrt_mysql参数可开启)     
+取值方法:`select round(avg(AVG_TIMER_WAIT)/1000/1000/1000,2) as avgrt from performance_schema.events_statements_summary_by_digest`  
 
 ## 2. trigger与percona版本差异
 - 增加MySQL {#MYSQLPORT} max_connections less than 4999 on {HOST.NAME}  
@@ -290,6 +299,13 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
 |		pool_read_requests|         Innodb_buffer_pool_read_requests|
 |		running_slave|              SHOW SLAVE STATUS|
 |       mysqld_port_listen|         netstat -ntlp    |
+|       query_rt100s|performance_schema.events_statements_summary_by_digest|
+|       query_rt10s|performance_schema.events_statements_summary_by_digest|
+|       query_rt1s| performance_schema.events_statements_summary_by_digest|
+|       query_rt100ms| performance_schema.events_statements_summary_by_digest|
+|       query_rt10ms| performance_schema.events_statements_summary_by_digest|
+|       query_rt1ms|performance_schema.events_statements_summary_by_digest|
+|       query_avgrt |performance_schema.events_statements_summary_by_digest|
 
 
 

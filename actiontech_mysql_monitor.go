@@ -24,12 +24,13 @@ const (
 	SHOW_MASTER_LOGS
 	SHOW_PROCESSLIST
 	SHOW_INNODB_STATUS
-	SELECT_FROM_QUERY_RESPONSE_TIME
+	SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA
+	SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL
 )
 
 var (
 	mysqlSsl = false // Whether to use SSL to connect to MySQL.
-	// TODO:supput ssl conn
+	// TODO:support ssl conn
 	/*	mysqlSslKey  = "/etc/pki/tls/certs/mysql/client-key.pem"
 		mysqlSslCert = "/etc/pki/tls/certs/mysql/client-cert.pem"
 		mysqlSslCa   = "/etc/pki/tls/certs/mysql/ca-cert.pem"*/
@@ -47,12 +48,13 @@ var (
 	heartbeatUtc      = flag.Bool("heartbeat_utc", false, "Whether pt-heartbeat is run with --utc option. (default: false)")
 	heartbeatServerId = flag.String("heartbeat_server_id", "0", "`Server id` to associate with a heartbeat. Leave 0 if no preference. (default: 0)")
 	heartbeatTable    = flag.String("heartbeat_table", "percona.heartbeat", "`db.tbl`.")
-	innodb            = flag.Bool("innodb", true, "Whether to check InnoDB statistics (default: true)")
-	master            = flag.Bool("master", true, "Whether to check binary logging (default: true)")
-	slave             = flag.Bool("slave", true, "Whether to check slave status (default: true)")
-	procs             = flag.Bool("procs", true, "Whether to check SHOW PROCESSLIST (default: true)")
-	getQrt            = flag.Bool("get_qrt", true, "Whether to get response times from Percona Server or MariaDB (default: true)")
-	discoveryPort     = flag.Bool("discovery_port", false, "`discovery mysqld port`, print in json format")
+	innodb            = flag.Bool("innodb", true, "Whether to check InnoDB statistics")
+	master            = flag.Bool("master", true, "Whether to check binary logging")
+	slave             = flag.Bool("slave", true, "Whether to check slave status")
+	procs             = flag.Bool("procs", true, "Whether to check SHOW PROCESSLIST")
+	getQrtPercona     = flag.Bool("get_qrt_percona", true, "Whether to get response times from Percona Server or MariaDB")
+	getQrtMysql       = flag.Bool("get_qrt_mysql", false, "Whether to get response times from MySQL (default: false)")
+	discoveryPort     = flag.Bool("discovery_port", false, "`discovery mysqld port`, print in json format (default: false)")
 	useSudo           = flag.Bool("sudo", true, "Use `sudo netstat...`")
 
 	// log
@@ -151,8 +153,8 @@ func collect() ([]bool, []map[string]string) {
 	}
 
 	// Collecting ...
-	collectionInfo := make([]map[string]string, 7)
-	collectionExist := []bool{true, true, false, false, false, false, false}
+	collectionInfo := make([]map[string]string, 8)
+	collectionExist := []bool{true, true, false, false, false, false, false, false}
 
 	collectionInfo[SHOW_STATUS] = collectAllRowsToMap("variable_name", "value", db, "SHOW /*!50002 GLOBAL */ STATUS")
 	collectionInfo[SHOW_VARIABLES] = collectAllRowsToMap("variable_name", "value", db, "SHOW VARIABLES")
@@ -196,16 +198,32 @@ func collect() ([]bool, []map[string]string) {
 		if value, ok := engineMap["InnoDB"]; ok && (value == "YES" || value == "DEFAULT") {
 			collectionInfo[SHOW_INNODB_STATUS] = collectFirstRowAsMapValue("innodb_status_text", "status", db, "SHOW /*!50000 ENGINE*/ INNODB STATUS")
 			// Get response time histogram from Percona Server or MariaDB if enabled.
-			if !*getQrt {
-				log.Println("Not getting time histogram because it is not enabled")
+			if !*getQrtPercona {
+				log.Println("Not getting time histogram percona because it is not enabled")
 			} else if collectionInfo[SHOW_VARIABLES]["have_response_time_distribution"] == "YES" || collectionInfo[SHOW_VARIABLES]["query_response_time_stats"] == "ON" {
-				collectionExist[SELECT_FROM_QUERY_RESPONSE_TIME] = true
-				collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME] = make(map[string]string)
-				log.Println("Getting query time histogram")
-				stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME], collectRowsAsMapValue("Query_time_count_", "count", 14, db, "SELECT `count`, ROUND(total * 1000000) AS total FROM INFORMATION_SCHEMA.QUERY_RESPONSE_TIME WHERE `time` <> 'TOO LONG'"))
-				stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME], collectRowsAsMapValue("Query_time_total_", "total", 14, db, "SELECT `count`, ROUND(total * 1000000) AS total FROM INFORMATION_SCHEMA.QUERY_RESPONSE_TIME WHERE `time` <> 'TOO LONG'"))
+				collectionExist[SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA] = true
+				collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA] = make(map[string]string)
+				log.Println("Getting query time histogram percona")
+				stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA], collectRowsAsMapValue("Query_time_count_", "count", 14, db, "SELECT `count`, ROUND(total * 1000000) AS total FROM INFORMATION_SCHEMA.QUERY_RESPONSE_TIME WHERE `time` <> 'TOO LONG'"))
+				stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA], collectRowsAsMapValue("Query_time_total_", "total", 14, db, "SELECT `count`, ROUND(total * 1000000) AS total FROM INFORMATION_SCHEMA.QUERY_RESPONSE_TIME WHERE `time` <> 'TOO LONG'"))
 			}
 		}
+	}
+
+	// Get Query Response Time histogram from MySQL if enable.
+	if (!*getQrtMysql) || (collectionInfo[SHOW_VARIABLES]["performance_schema"] != "ON") {
+		log.Println("Not getting time histogram mysql because it is not enabled")
+	} else {
+		collectionExist[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL] = true
+		collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL] = make(map[string]string)
+		query := `select 'query_rt100s' as rt ,count(*) as count from performance_schema.events_statements_summary_by_digest where AVG_TIMER_WAIT >=  100000000000000 union
+select 'query_rt10s',count(*) from performance_schema.events_statements_summary_by_digest where AVG_TIMER_WAIT between  10000000000000 and 10000000000000 union
+select 'query_rt1s',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between  1000000000000 and 10000000000000 union
+select 'query_rt100ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between 100000000000 and 1000000000000 union
+select 'query_rt10ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between 10000000000 and 100000000000 union
+select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT <= 1000000000`
+		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectAllRowsToMap("rt", "count", db, query))
+		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectFirstRowAsMapValue("query_avgrt", "avgrt", db, "select round(avg(AVG_TIMER_WAIT)/1000/1000/1000,2) as avgrt from performance_schema.events_statements_summary_by_digest"))
 	}
 
 	return collectionExist, collectionInfo
@@ -378,8 +396,12 @@ func parse(collectionExist []bool, collectionInfo []map[string]string) map[strin
 		}
 	}
 
-	if collectionExist[SELECT_FROM_QUERY_RESPONSE_TIME] {
-		stringMapAdd(stat, collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME])
+	if collectionExist[SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA] {
+		stringMapAdd(stat, collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA])
+	}
+
+	if collectionExist[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL] {
+		stringMapAdd(stat, collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL])
 	}
 
 	return stat
@@ -600,6 +622,14 @@ func print(result map[string]string, fp *os.File) {
 		"pool_reads",
 		"pool_read_requests",
 		"running_slave",
+		"query_rt100s",
+		"query_rt10s",
+		"query_rt1s",
+		"query_rt100ms",
+		"query_rt10ms",
+		"query_rt1ms",
+		"query_rtavg",
+		"query_avgrt",
 	}
 
 	// Return the output.
