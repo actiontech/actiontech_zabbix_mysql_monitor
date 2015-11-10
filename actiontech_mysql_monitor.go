@@ -1288,6 +1288,9 @@ func discoveryMysqldPort() {
 	}
 	fields := strings.Split(strings.TrimRight(string(out), "\n"), "\n")
 	for _, field := range fields {
+		if "" == field {
+			continue
+		}
 		mp := map[string]string{
 			"{#MYSQLPORT}": field,
 		}
