@@ -32,6 +32,7 @@ select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_
 - 增加MySQL {#MYSQLPORT} Open_files_limit less than 65534 on {HOST.NAME}  
 - 增加MySQL {#MYSQLPORT} port is not in listen state on {HOST.NAME}  
 - 增加{#MYSQLPORT} port is not mysqld on {HOST.NAME}  
+- 删除原有的mysql active threads more than 40, mysql connections utilization more than 80%, mysql slave lag more than 300的trigger(zabbix 2.4 LLD下的trigger没有depend功能, 删除这些原本依赖depend的trigger以避免错误)  
 
 ## 3. 限制
 - 暂不支持mysql ssl连接方式
@@ -318,11 +319,8 @@ select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_
 | ------------- | -----| 
 |MySQL is down on {HOST.NAME}|{proc.num[mysqld].last(0)}=0|
 |MySQL {#MYSQLPORT} connections utilization more than 95% on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}>0.95|
-|MySQL {#MYSQLPORT} connections utilization more than 80% on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_connected].last(0)}/{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}>0.8|
 |MySQL {#MYSQLPORT} active threads more than 100 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_running].last(0)}>100|
-|MySQL {#MYSQLPORT} active threads more than 40 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},Threads_running].last(0)}>40|
 |MySQL {#MYSQLPORT} slave lag more than 600 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},slave_lag].last(0)}>600|
-|MySQL {#MYSQLPORT} slave lag more than 300 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},slave_lag].last(0)}>300|
 |Slave {#MYSQLPORT} is stopped on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},running_slave].last(0)}=0|
 |MySQL {#MYSQLPORT} max_connections less than 4999 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},max_connections].last(0)}<4999|
 |MySQL {#MYSQLPORT} Open_files_limit less than 65534 on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},open_files_limit].last(0)}<65534|
