@@ -857,6 +857,10 @@ func parseInnodbStatusWithRule(status string) map[string]int64 {
 		"active_transactions":  0,
 		"locked_transactions":  0,
 	}
+
+	// discard INDIVIDUAL BUFFER POOL INFO, only parse total BUFFER POOL AND MEMORY
+	status = regIndividual.ReplaceAllString(status, "")
+
 	txnSeen := false
 	preField := ""
 	fields := strings.Split(status, "\n")
