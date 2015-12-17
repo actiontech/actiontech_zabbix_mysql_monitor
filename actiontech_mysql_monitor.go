@@ -62,8 +62,9 @@ var (
 	debugLogFile *os.File
 
 	//regexps
-	regSpaces  = regexp.MustCompile("\\s+")
-	regNumbers = regexp.MustCompile("\\d+")
+	regSpaces     = regexp.MustCompile("\\s+")
+	regNumbers    = regexp.MustCompile("\\d+")
+	regIndividual = regexp.MustCompile("(?s)INDIVIDUAL BUFFER POOL INFO.*ROW OPERATIONS")
 
 	Version string
 )
@@ -900,6 +901,12 @@ func handleInnodbStatusField(field string, preField string, txnSeen *bool, resul
 	^RW-excl spins&&&&?!; RW-excl spins | 4 | spin_rounds | -
 	^RW-excl spins&&&&?!; RW-excl spins | 7 | os_waits | -
 
+	// mysql 5.7: "Mutex spin" information has been split out into three kinds (RW-shared, RW-excl, RW-sx)
+	// RW-sx spins 8947, rounds 258579, OS waits 8298
+	^RW-sx spins | 2 | spin_waits | -
+	^RW-sx spins | 4 | spin_rounds | -
+	^RW-sx spins | 7 | os_waits | -
+
 	// --Thread 907205 has waited at handler/ha_innodb.cc line 7156 for 1.00 seconds the semaphore:
 	seconds the semaphore: | 9 | innodb_sem_wait_time_ms | addSemWait
 
@@ -946,14 +953,18 @@ func handleInnodbStatusField(field string, preField string, txnSeen *bool, resul
 	OS file reads, | 4 | file_writes | -
 	OS file reads, | 8 | file_fsyncs | -
 
-	// Pending normal aio reads: 0, aio writes: 0,
-	^Pending normal aio reads: | 4 | pending_normal_aio_reads | -
-	^Pending normal aio reads: | 7 | pending_normal_aio_writes | -
+    // Pending normal aio reads: 0, aio writes: 0,
+	// mysql 5.7: Pending normal aio reads: [0, 0, 0, 0] , aio writes: [0, 0, 0, 0] ,
+	// mysql 5.7: Pending normal aio reads:, aio writes:,
+	// Pending aio read/write information is still present, however the numbers are now split to show the number of waits per I/O thread 
+	^Pending normal aio reads:(.*), aio writes:(.*), | 1 | pending_normal_aio_reads | NumOrEmptyOrArrayRegexp
+	^Pending normal aio reads:(.*), aio writes:(.*), | 2 | pending_normal_aio_writes | NumOrEmptyOrArrayRegexp
 
 	// ibuf aio reads: 0, log i/o's: 0, sync i/o's: 0
-	^ibuf aio reads | 3 | pending_ibuf_aio_reads | -
-	^ibuf aio reads | 6 | pending_aio_log_ios | -
-	^ibuf aio reads | 9 | pending_aio_sync_ios | -
+	// mysql 5.7: ibuf aio reads:, log i/o's:, sync i/o's:
+	^ibuf aio reads:(.*), log i/o's:(.*), sync i/o's:(.*) | 1 | pending_ibuf_aio_reads | NumOrEmptyOrArrayRegexp
+	^ibuf aio reads:(.*), log i/o's:(.*), sync i/o's:(.*) | 2 | pending_aio_log_ios | NumOrEmptyOrArrayRegexp
+	^ibuf aio reads:(.*), log i/o's:(.*), sync i/o's:(.*) | 3 | pending_aio_sync_ios | NumOrEmptyOrArrayRegexp
 
 	// Pending flushes (fsync) log: 0; buffer pool: 0
 	^Pending flushes \(fsync\) | 4 | pending_log_flushes | -
@@ -1002,6 +1013,10 @@ func handleInnodbStatusField(field string, preField string, txnSeen *bool, resul
 	pending log writes, | 0 | pending_log_writes | -
 	pending log writes, | 4 | pending_chkp_writes | -
 
+	// mysql 5.7: 1 pending log flushes, 0 pending chkp writes
+	pending log flushes, | 0 | pending_log_writes | -
+	pending log flushes, | 4 | pending_chkp_writes | -
+
 	// This number is NOT printed in hex in InnoDB plugin.
     // Log sequence number 13093949495856 //plugin
 	// Log sequence number 125 3934414864 //normal
@@ -1023,6 +1038,9 @@ func handleInnodbStatusField(field string, preField string, txnSeen *bool, resul
 	// Total memory allocated by read views 96
 	^Total memory allocated&&&&in additional pool allocated | 3 | total_mem_alloc | -
 	^Total memory allocated&&&&in additional pool allocated | 8 | additional_pool_alloc | -
+
+	// mysql 5.7: Total large memory allocated 137428992
+	^Total large memory allocated | 4 | total_mem_alloc | -
 	
 	// Adaptive hash index 1538240664 	(186998824 + 1351241840)
 	^Adaptive hash index | 3 | adaptive_hash_memory | -
@@ -1125,9 +1143,15 @@ func handleInnodbStatusField(field string, preField string, txnSeen *bool, resul
 				if fieldRegexpJudge(preField, "merged operations:") {
 					doDefaultHandle(row, rowIndexNum, rowKey, result)
 				}
+			case "NumOrEmptyOrArrayRegexp":
+				parsedStr, err := parseRegexpSubmatch(field, myRegexp, rowIndexNum)
+				if nil != err {
+					log.Printf("NumOrEmptyOrArrayRegexp: parseRegexp err:(%v)", err)
+					break
+				}
+				doNumOrEmptyOrArrayRegexpHandle(parsedStr, rowKey, result)
 			}
 		}
-
 	}
 
 	if val1, ok1 := (*result)["log_bytes_written"]; ok1 {
@@ -1180,6 +1204,35 @@ func doPurgeHandle(row []string, result *map[string]int64) {
 
 func doIncHandle(rowKey string, result *map[string]int64) {
 	(*result)[rowKey]++
+}
+
+func parseRegexpSubmatch(field, reg string, regSubmatchNum int) (string, error) {
+	if myReg, err := regexp.Compile(reg); nil == err {
+		seg := myReg.FindStringSubmatch(field)
+		if len(seg) <= regSubmatchNum {
+			return "", fmt.Errorf("doRegexpHandle err: use reg(%v) FindStringSubmatch(%v) seg(%v) too short, need seg[%v]", reg, field, regSubmatchNum)
+		}
+		return seg[regSubmatchNum], nil
+	} else {
+		return "", err
+	}
+}
+
+func doNumOrEmptyOrArrayRegexpHandle(parsedStr, rowKey string, result *map[string]int64) {
+	parsedStr = strings.TrimSpace(parsedStr)
+	// parsedStr may be "" "10" "[10, 10, 10]"
+	if "" == parsedStr {
+		(*result)[rowKey] = 0
+	} else {
+		parsedStr = strings.TrimFunc(parsedStr, func(r rune) bool {
+			return r == '[' || r == ']'
+		})
+		// parsedStr may be "10" "10, 10, 10"
+		for _, num := range strings.Split(parsedStr, ", ") {
+			log.Printf("doNumOrEmptyOrArrayRegexpHandle: result[%v] add num: %v", rowKey, num)
+			(*result)[rowKey] += convStrToInt64(num)
+		}
+	}
 }
 
 func convStrToInt64(s string) int64 {

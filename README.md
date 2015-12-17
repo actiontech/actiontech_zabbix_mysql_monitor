@@ -26,6 +26,13 @@ select 'query_rt10ms',count(*) from performance_schema.events_statements_summary
 select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT <= 1000000000`  
  - 增加query_avgrt(默认关闭，设置get_qrt_mysql参数可开启)     
 取值方法:`select round(avg(AVG_TIMER_WAIT)/1000/1000/1000,2) as avgrt from performance_schema.events_statements_summary_by_digest`  
+ - 去除`SHOW /\*!50000 ENGINE*/ INNODB STATUS`输出中`INDIVIDUAL BUFFER POOL INFO`段落的信息，避免重复计算   
+ - spin_rounds  
+ 取值方法：`SHOW /\*!50000 ENGINE*/ INNODB STATUS`,可得行
+`Mutex spin waits 2537, rounds 28527, OS waits 789
+RW-shared spins 535, rounds 7850, OS waits 251
+RW-excl spins 172, rounds 2334, OS waits 62`取值`spin_rounds = 28527 + 7850 + 2334`  
+percona取值spin_rounds = 28527，actiontech版本增加RW-shared spins rounds以及RW-excl spin rounds  
 
 ## 2. trigger与percona版本差异
 - 增加MySQL {#MYSQLPORT} max_connections less than 4999 on {HOST.NAME}  
@@ -37,6 +44,79 @@ select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_
 ## 3. 限制
 - 暂不支持mysql ssl连接方式
 - 不完全支持Percona Server or MariaDB
+- 仅支持zabbix2.4.0及以上版本  
+
+## 4. 增加对mysql 5.7支持  
+针对`SHOW /*!50000 ENGINE*/ INNODB STATUS`输出  
+5.6与5.7的几句差异  
+mysql 5.6   
+- SEMAPHORES输出    
+Mutex spin waits 2537, rounds 28527, OS waits 789  
+RW-shared spins 535, rounds 7850, OS waits 251  
+RW-excl spins 172, rounds 2334, OS waits 62  
+计算：  
+spin_waits = 2537 + 535 + 172    
+spin_rounds = 28527 + 7850 + 2334  
+os_waits = 789 + 251 + 62  
+  
+  
+- FILE I/O输出  
+Pending normal aio reads: 0, aio writes: 0,  
+ibuf aio reads: 0, log i/o's: 0, sync i/o's: 0  
+计算：  
+pending_normal_aio_reads = 0  
+pending_normal_aio_writes = 0  
+pending_ibuf_aio_reads = 0  
+pending_aio_log_ios = 0   
+pending_aio_sync_ios = 0   
+  
+- LOG输出  
+0 pending log writes, 0 pending chkp writes  
+计算：  
+pending_log_writes = 0   
+pending_chkp_writes = 0  
+
+- BUFFER POOL AND MEMORY输出  
+Total memory allocated 137363456; in additional pool allocated 0  
+计算：  
+total_mem_alloc = 137363456  
+additional_pool_alloc = 0  
+
+
+
+mysql 5.7
+- SEMAPHORES输出（移除Mutex spin，新增RW-sx spins）  
+RW-shared spins 500, rounds 132474, OS waits 100787  
+RW-excl spins 0, rounds 200953, OS waits 6214   
+RW-sx spins 28837, rounds 826250, OS waits 26397  
+计算：  
+spin_waits = 500 + 0 + 28837  
+spin_rounds = 132474 + 200953 + 826250  
+os_waits = 100787 + 6214 + 26397  
+  
+- FILE I/O输出（拆分为每个io thread的值）  
+Pending normal aio reads: [1, 2, 3, 4] , aio writes: [5, 6, 7, 8] ,  
+ibuf aio reads:, log i/o's:, sync i/o's:  
+计算：  
+数组全部元素相加， 空值为0  
+pending_normal_aio_reads = 1 + 2 + 3 + 4  
+pending_normal_aio_writes = 5 + 6 + 7 + 8  
+pending_ibuf_aio_reads = 0  
+pending_aio_log_ios = 0  
+pending_aio_sync_ios = 0   
+  
+- LOG输出  
+1 pending log flushes, 0 pending chkp writes  
+log flushes 与 log writes意义相同，计算方式不变  
+计算：   
+pending_log_writes = 1   
+pending_chkp_writes = 0  
+  
+- BUFFER POOL AND MEMORY输出（移除in additional pool allocated）  
+Total large memory allocated 137428992  
+计算：  
+total_mem_alloc = 137428992  
+additional_pool_alloc = 0  
 
 ## 4. 安装
 1. 安装zabbix-agent  
