@@ -887,11 +887,13 @@ func handleInnodbStatusField(field string, preField string, txnSeen *bool, resul
 	// Post 5.5.17 SHOW ENGINE INNODB STATUS syntax
 	// RW-shared spins 604733, rounds 8107431, OS waits 241268
 	^RW-shared spins&&&&?!; RW-excl spins | 2 | spin_waits | -
+	^RW-shared spins&&&&?!; RW-excl spins | 4 | spin_rounds | -
 	^RW-shared spins&&&&?!; RW-excl spins | 7 | os_waits | -
 
 	// Post 5.5.17 SHOW ENGINE INNODB STATUS syntax
-	// RW-excl spins 604733, rounds 8107431,
+	// RW-excl spins 604733, rounds 8107431, OS waits 62
 	^RW-excl spins&&&&?!; RW-excl spins | 2 | spin_waits | -
+	^RW-excl spins&&&&?!; RW-excl spins | 4 | spin_rounds | -
 	^RW-excl spins&&&&?!; RW-excl spins | 7 | os_waits | -
 
 	// --Thread 907205 has waited at handler/ha_innodb.cc line 7156 for 1.00 seconds the semaphore:
