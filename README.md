@@ -118,7 +118,7 @@ Total large memory allocated 137428992
 total_mem_alloc = 137428992  
 additional_pool_alloc = 0  
 
-## 4. 安装
+## 5. 安装
 1. 安装zabbix-agent  
 2. 执行install.sh  
 //请检查确保/etc/sudoers中包含#includedir /etc/sudoers.d
@@ -142,7 +142,7 @@ additional_pool_alloc = 0
 6. zabbix server导入配置模板actiontech_zabbix_agent_template_percona_mysql_server.xml， 添加主机、模板，开始监控  
 
 
-## 5. 文件列表
+## 6. 文件列表
 
 |文件名|对应percona版本文件名|
 |------|------|
@@ -166,7 +166,7 @@ additional_pool_alloc = 0
 
 
 
-## 6. 所有item及其出处列表
+## 7. 所有item及其出处列表
 
 | item名         | 相关出处 |
 | ------------- | -----| ------ |
@@ -392,7 +392,7 @@ additional_pool_alloc = 0
 
 
 
-## 7. trigger列表
+## 8. trigger列表
 注：以下列表未列出trigger依赖，详情可见actiontech_zabbix_agent_template_percona_mysql_server.xml  
 
 | trigger名        |触发器表达式   |
@@ -407,5 +407,5 @@ additional_pool_alloc = 0
 |MySQL {#MYSQLPORT} port is not in listen state on {HOST.NAME}|{Actiontech MySQL Server Template:net.tcp.listen[{#MYSQLPORT}].last(0)}=0|
 |{#MYSQLPORT} port is not mysqld on {HOST.NAME}|{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},mysqld_port_listen].last(0)}=0|
 
-## 8. issues
+## 9. issues
 - 欢迎在issues中提出任何使用问题
