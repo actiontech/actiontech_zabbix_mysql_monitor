@@ -226,13 +226,13 @@ func collect() ([]bool, []map[string]string) {
 	} else {
 		collectionExist[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL] = true
 		collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL] = make(map[string]string)
-		query := `SELECT 'rt100s' as rt, ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT >= 100000000000000 UNION
-SELECT 'rt10s', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 10000000000000 AND 10000000000000 UNION 
-SELECT 'rt1s', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 1000000000000 AND 10000000000000 UNION 
-SELECT 'rt100ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 100000000000 AND 1000000000000 UNION 
-SELECT 'rt10ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 10000000000 AND 100000000000 UNION 
-SELECT 'rt1ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 1000000000 AND 10000000000 UNION 
-SELECT 'rt100us', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT <= 1000000000`
+		query := `SELECT 'query_rt100s' as rt, ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT >= 100000000000000 UNION
+SELECT 'query_rt10s', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 10000000000000 AND 10000000000000 UNION 
+SELECT 'query_rt1s', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 1000000000000 AND 10000000000000 UNION 
+SELECT 'query_rt100ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 100000000000 AND 1000000000000 UNION 
+SELECT 'query_rt10ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 10000000000 AND 100000000000 UNION 
+SELECT 'query_rt1ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 1000000000 AND 10000000000 UNION 
+SELECT 'query_rt100us', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT <= 1000000000`
 
 		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectAllRowsToMap("rt", "count", db, query))
 		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectFirstRowAsMapValue("query_avgrt", "avgrt", db, "select round(avg(AVG_TIMER_WAIT)/1000/1000/1000,2) as avgrt from performance_schema.events_statements_summary_by_digest"))
