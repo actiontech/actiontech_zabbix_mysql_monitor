@@ -156,6 +156,7 @@ func collect() ([]bool, []map[string]string) {
 		if nil != err {
 			log.Fatalf("sql.Open err:(%s) exit !", err)
 		}
+		defer db.Close()
 		if err := db.Ping(); nil != err {
 			log.Fatalf("db.Ping err:(%s) exit !", err)
 		}
