@@ -234,7 +234,7 @@ SELECT 'query_rt10ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.
 SELECT 'query_rt1ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 1000000000 AND 10000000000 UNION 
 SELECT 'query_rt100us', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT <= 1000000000`
 
-		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectAllRowsToMap("rt", "count", db, query))
+		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectAllRowsToMap("rt", "cnt", db, query))
 		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectFirstRowAsMapValue("query_avgrt", "avgrt", db, "select round(avg(AVG_TIMER_WAIT)/1000/1000/1000,2) as avgrt from performance_schema.events_statements_summary_by_digest"))
 	}
 
