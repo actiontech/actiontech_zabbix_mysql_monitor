@@ -1335,7 +1335,7 @@ func changeKeyCase(m map[string]string) map[string]string {
 func discoveryMysqldPort() {
 	data := make([]map[string]string, 0)
 	enc := json.NewEncoder(os.Stdout)
-	cmd := "netstat -ntlp |awk -F '[ :]+' '/\\/mysqld[ $]/{print $4}'"
+	cmd := "netstat -ntlp |awk '/\\/mysqld[ $]/{print $4}'|awk -F ':' '{print $NF}'"
 	if *useSudo {
 		cmd = "sudo " + cmd
 	}
