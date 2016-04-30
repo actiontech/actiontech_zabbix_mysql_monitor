@@ -1366,7 +1366,7 @@ func discoveryMysqldPort() {
 }
 
 func verifyMysqldPort(port string) bool {
-	cmd := "netstat -ntlp |awk -F '[ :]+|/' '$4~/^" + port + "$/{print $8}'"
+	cmd := "netstat -ntlp |awk -F '[ ]+|/' '$4~/:" + port + "$/{print $8}'"
 	if *useSudo {
 		cmd = "sudo " + cmd
 	}
