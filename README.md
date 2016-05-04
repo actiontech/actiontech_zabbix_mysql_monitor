@@ -15,15 +15,16 @@ percona将861135作为十六进制字符解析，actiontech版本将861135作为
  - running_slave，slave_lag:  
 取值方法：如果`SHOW SLAVE STATUS`为空，认为该mysql为master，设置running_slave=1，slave_lag=0；如果`SHOW SLAVE STATUS`不为空，与percona处理相同，依据slave_io_running及slave_sql_running等具体参数值设置
  - 增加mysqld_port_listen  
-取值方法：`netstat -ntlp |awk -F '[ :]+|/' '$4~/^port$/{print $8}'`其中port为参数传入值   
+取值方法：`netstat -ntlp |awk -F '[ ]+|/' '$4~/:port$/{print $8}'`其中port为参数传入值   
 若上述命令结果等于`mysqld`，则值为1，反之为0  
  - 增加query_rt100s、query_rt10s、query_rt1s、query_rt100ms、query_rt10ms、query_rt1ms(默认关闭，设置get_qrt_mysql参数可开启)  
-取值方法`select 'query_rt100s' as rt ,count(*) as count from performance_schema.events_statements_summary_by_digest where AVG_TIMER_WAIT >=  100000000000000 union
-select 'query_rt10s',count(*) from performance_schema.events_statements_summary_by_digest where AVG_TIMER_WAIT between  10000000000000 and 10000000000000 union
-select 'query_rt1s',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between  1000000000000 and 10000000000000 union
-select 'query_rt100ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between 100000000000 and 1000000000000 union
-select 'query_rt10ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT between 10000000000 and 100000000000 union
-select 'query_rt1ms',count(*) from performance_schema.events_statements_summary_by_digest where  AVG_TIMER_WAIT <= 1000000000`  
+取值方法`SELECT 'query_rt100s' as rt, ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT >= 100000000000000 UNION
+SELECT 'query_rt10s', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 10000000000000 AND 10000000000000 UNION 
+SELECT 'query_rt1s', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 1000000000000 AND 10000000000000 UNION 
+SELECT 'query_rt100ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 100000000000 AND 1000000000000 UNION 
+SELECT 'query_rt10ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 10000000000 AND 100000000000 UNION 
+SELECT 'query_rt1ms', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT BETWEEN 1000000000 AND 10000000000 UNION 
+SELECT 'query_rt100us', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema.events_statements_summary_by_digest WHERE AVG_TIMER_WAIT <= 1000000000`  
  - 增加query_avgrt(默认关闭，设置get_qrt_mysql参数可开启)     
 取值方法:`select round(avg(AVG_TIMER_WAIT)/1000/1000/1000,2) as avgrt from performance_schema.events_statements_summary_by_digest`  
  - 去除`SHOW /\*!50000 ENGINE*/ INNODB STATUS`输出中`INDIVIDUAL BUFFER POOL INFO`段落的信息，避免重复计算   
