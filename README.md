@@ -48,7 +48,7 @@ percona取值spin_rounds = 28527，actiontech版本增加RW-shared spins rounds�
 - 仅支持zabbix2.4.0及以上版本  
 
 ## 4. 增加对mysql 5.7支持  
-针对`SHOW /*!50000 ENGINE*/ INNODB STATUS`输出  
+### 针对`SHOW /*!50000 ENGINE*/ INNODB STATUS`输出  
 5.6与5.7的几句差异  
 mysql 5.6   
 - SEMAPHORES输出    
@@ -82,6 +82,11 @@ Total memory allocated 137363456; in additional pool allocated 0
 计算：  
 total_mem_alloc = 137363456  
 additional_pool_alloc = 0  
+
+### 针对`SHOW SLAVE STATUS`输出，支持多源复制   
+slave_lag: 取多通道中seconds_behind_master的最大值  
+running_slave: 当所有通道的slave_io_running和slave_sql_running状态为Yes时, runing_slave值为1  
+relay_log_space: 取所有通道的relay_log_space的和  
 
 
 

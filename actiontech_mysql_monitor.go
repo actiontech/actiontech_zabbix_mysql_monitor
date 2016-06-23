@@ -173,10 +173,42 @@ func collect() ([]bool, []map[string]string) {
 		collectionInfo[SHOW_SLAVE_STATUS] = make(map[string]string)
 		// Leverage lock-free SHOW SLAVE STATUS if available
 		queryResult := tryQueryIfAvailable(db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS")
+		log.Println("get slave status: ", queryResult)
 		if 0 == len(queryResult) {
 			log.Println("show slave empty, assume it is a master")
 		} else {
-			stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], changeKeyCase(queryResult[0]))
+			queryResult[0] = changeKeyCase(queryResult[0])
+			if 1 < len(queryResult) {
+				// Multi source replication
+				log.Println("show slave multi rows, assume it is a multi source replication")
+
+				var maxLag int64 = -1
+				var totalRelayLogSpace int64 = 0
+				for i, resultMap := range queryResult {
+					resultMap = changeKeyCase(resultMap)
+					if resultMap["slave_io_running"] != "Yes" {
+						log.Printf("%dth row slave_io_running != Yes", i)
+						queryResult[0]["slave_io_running"] = "No"
+					}
+					if resultMap["slave_sql_running"] != "Yes" {
+						log.Printf("%dth row slave_sql_running != Yes", i)
+						queryResult[0]["slave_sql_running"] = "No"
+					}
+
+					// get max slave_lag
+					if resultMap["seconds_behind_master"] != "NULL" && convStrToInt64(resultMap["seconds_behind_master"]) > maxLag {
+						log.Printf("%dth row seconds_behind_master may be max", i)
+						maxLag = convStrToInt64(resultMap["seconds_behind_master"])
+						queryResult[0]["seconds_behind_master"] = resultMap["seconds_behind_master"]
+					}
+
+					//get total relay_log_space
+					log.Printf("%dth row relay_log_space is %s", i, resultMap["relay_log_space"])
+					totalRelayLogSpace += convStrToInt64(resultMap["relay_log_space"])
+				}
+				queryResult[0]["relay_log_space"] = strconv.FormatInt(totalRelayLogSpace, 10)
+			}
+			stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], queryResult[0])
 			/*			stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], collectFirstRowAsMapValue("relay_log_space", "relay_log_space", db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS"))
 						stringMapAdd(collectionInfo[SHOW_SLAVE_STATUS], collectFirstRowAsMapValue("seconds_behind_master", "seconds_behind_master", db, "SHOW SLAVE STATUS NONBLOCKING", "SHOW SLAVE STATUS NOLOCK", "SHOW SLAVE STATUS"))
 			*/
