@@ -83,11 +83,6 @@ Total memory allocated 137363456; in additional pool allocated 0
 total_mem_alloc = 137363456  
 additional_pool_alloc = 0  
 
-### 针对`SHOW SLAVE STATUS`输出，支持多源复制   
-slave_lag: 取多通道中seconds_behind_master的最大值  
-running_slave: 当所有通道的slave_io_running和slave_sql_running状态为Yes时, runing_slave值为1  
-relay_log_space: 取所有通道的relay_log_space的和  
-
 
 
 mysql 5.7
@@ -123,6 +118,12 @@ Total large memory allocated 137428992
 计算：  
 total_mem_alloc = 137428992  
 additional_pool_alloc = 0  
+
+### 针对`SHOW SLAVE STATUS`输出，支持多源复制   
+slave_lag: 取多通道中seconds_behind_master的最大值  
+running_slave: 当所有通道的slave_io_running和slave_sql_running状态为Yes时, runing_slave值为1  
+relay_log_space: 取所有通道的relay_log_space的和  
+
 
 ## 5. 安装
 1. 安装zabbix-agent  
