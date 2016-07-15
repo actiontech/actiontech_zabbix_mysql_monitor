@@ -39,7 +39,7 @@ percona取值spin_rounds = 28527，actiontech版本增加RW-shared spins rounds�
 - 增加MySQL {#MYSQLPORT} max_connections less than 4999 on {HOST.NAME}  
 - 增加MySQL {#MYSQLPORT} Open_files_limit less than 65534 on {HOST.NAME}  
 - 增加MySQL {#MYSQLPORT} port is not in listen state on {HOST.NAME}  
-- 增加{#MYSQLPORT} mysql port is down on {HOST.NAME}  
+- 增加{#MYSQLPORT} port mysql is down on {HOST.NAME}  
 - 删除原有的使用proc num监控的MySQL is down trigger(多实例下结果不正确)  
 - 删除原有的mysql active threads more than 40, mysql connections utilization more than 80%, mysql slave lag more than 300的trigger(zabbix 2.4 LLD下的trigger没有depend功能, 删除这些原本依赖depend的trigger以避免错误)  
 
