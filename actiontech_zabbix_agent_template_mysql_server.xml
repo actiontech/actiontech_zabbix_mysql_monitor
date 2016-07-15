@@ -8775,7 +8775,7 @@
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},mysqld_port_listen].last(0)}=0</expression>
-                            <name>{#MYSQLPORT} mysql port is down on {HOST.NAME}</name>
+                            <name>{#MYSQLPORT} port mysql is down on {HOST.NAME}</name>
                             <url/>
                             <status>0</status>
                             <priority>4</priority>
