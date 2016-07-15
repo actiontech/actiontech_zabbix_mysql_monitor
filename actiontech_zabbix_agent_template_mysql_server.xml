@@ -8775,7 +8775,7 @@
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Actiontech MySQL Server Template:MySQL.[{#MYSQLPORT},mysqld_port_listen].last(0)}=0</expression>
-                            <name>{#MYSQLPORT} port is not mysqld on {HOST.NAME}</name>
+                            <name>{#MYSQLPORT} mysql port is down on {HOST.NAME}</name>
                             <url/>
                             <status>0</status>
                             <priority>4</priority>
@@ -13025,16 +13025,4 @@
             </screens>
         </template>
     </templates>
-    <triggers>
-        <trigger>
-            <expression>{Actiontech MySQL Server Template:proc.num[mysqld].last(0)}=0</expression>
-            <name>MySQL is down on {HOST.NAME}</name>
-            <url/>
-            <status>0</status>
-            <priority>5</priority>
-            <description/>
-            <type>0</type>
-            <dependencies/>
-        </trigger>
-    </triggers>
 </zabbix_export>
