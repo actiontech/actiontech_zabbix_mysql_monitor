@@ -177,7 +177,7 @@ relay_log_space: 取所有通道的relay_log_space的和
 ## 7. 所有item及其出处列表
 
 | item名         | 相关出处 |
-| ------------- | -----| ------ |
+| ------------- | -----| 
 |		Key_read_requests|          SHOW /*!50002 GLOBAL */ STATUS|
 |		Key_reads|                  SHOW /*!50002 GLOBAL */ STATUS|
 |		Key_write_requests|         SHOW /*!50002 GLOBAL */ STATUS|
