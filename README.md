@@ -147,7 +147,7 @@ relay_log_space: 取所有通道的relay_log_space的和
 //json格式的mysqld端口占用   
 `sudo -u zabbix -H /var/lib/zabbix/actiontech/scripts/actiontech_mysql_monitor --port 3306 --items mysqld_port_listen`  
 //3306端口是否被mysqld占用  
-6. zabbix server导入配置模板actiontech_zabbix_agent_template_percona_mysql_server.xml， 添加主机、模板，开始监控  
+6. zabbix server导入配置模板actiontech_zbx_3.x_template_mysql_server.xml， 添加主机、模板，开始监控  
 
 
 ## 6. 文件列表
@@ -157,7 +157,7 @@ relay_log_space: 取所有通道的relay_log_space的和
 |无|get_mysql_stats_wrapper.sh|
 |actiontech_mysql_monitor|ss_get_mysql_stats.php|
 |userparameter_actiontech_mysql.conf|userparameter_percona_mysql.conf|
-|actiontech_zabbix_agent_template_percona_mysql_server.xml|zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.5.xml|
+|zabbix版本<=3.0使用actiontech_zbx_3.0_template_mysql_server.xml； zabbix版本==3.4使用actiontech_zbx_3.4_template_mysql_server.xml|zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.5.xml|
 |install.sh|无|
 
 
@@ -167,8 +167,8 @@ relay_log_space: 取所有通道的relay_log_space的和
 - userparameter_actiontech_mysql.conf  
 默认路径：`/var/lib/zabbix/actiontech/templates/userparameter_actiontech_mysql.conf`  
 备注：zabbix-agent的key配置文件  
-- actiontech_zabbix_agent_template_percona_mysql_server.xml  
-默认路径：`/var/lib/zabbix/actiontech/templates/actiontech_zabbix_agent_template_percona_mysql_server.xml`  
+- actiontech_zbx_3.x_template_mysql_server.xml.xml  
+默认路径：`/var/lib/zabbix/actiontech/templates/actiontech_zbx_3.x_template_mysql_server.xml.xml`  
 备注：模板文件，可导入zabbix  
 
 
@@ -401,7 +401,7 @@ relay_log_space: 取所有通道的relay_log_space的和
 
 
 ## 8. trigger列表
-注：以下列表未列出trigger依赖，详情可见actiontech_zabbix_agent_template_percona_mysql_server.xml  
+注：以下列表未列出trigger依赖，详情可见actiontech_zbx_3.x_template_mysql_server.xml.xml  
 
 | trigger名        |触发器表达式   |
 | ------------- | -----| 
