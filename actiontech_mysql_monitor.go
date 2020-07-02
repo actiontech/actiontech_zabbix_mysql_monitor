@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"syscall"
@@ -26,6 +27,12 @@ const (
 	SHOW_INNODB_STATUS
 	SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA
 	SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL
+)
+
+// pre key
+const (
+	SHOW_PROCESSLIST_STATE_PRE = "show_processlist_state_"
+	SHOW_PROCESSLIST_TIME_PRE  = "show_processlist_time_"
 )
 
 var (
@@ -226,10 +233,11 @@ func collect() ([]bool, []map[string]string) {
 		log.Println("collectionInfo master : ", collectionInfo[SHOW_MASTER_LOGS])
 	}
 
-	// Get SHOW PROCESSLIST and aggregate it by state
+	// Get SHOW PROCESSLIST and aggregate it by state, sort by time
 	if *procs {
 		collectionExist[SHOW_PROCESSLIST] = true
-		collectionInfo[SHOW_PROCESSLIST] = collectAllRowsAsMapValue("show_processlist_", "state", db, "SHOW PROCESSLIST")
+		collectionInfo[SHOW_PROCESSLIST] = collectMultiColumnAllRowsAsMapValue([]string{SHOW_PROCESSLIST_STATE_PRE, SHOW_PROCESSLIST_TIME_PRE},
+			[]string{"state", "time"}, db, "SHOW PROCESSLIST")
 		log.Println("collectionInfo show processlist:", collectionInfo[SHOW_PROCESSLIST])
 	}
 
@@ -371,26 +379,60 @@ func parse(collectionExist []bool, collectionInfo []map[string]string) map[strin
 			"State_none":                 0,
 			"State_other":                0, // Everything not listed above
 		}
+		procsTimeMap := map[string]int64{
+			"Time_top_1":  0,
+			"Time_top_2":  0,
+			"Time_top_3":  0,
+			"Time_top_4":  0,
+			"Time_top_5":  0,
+			"Time_top_6":  0,
+			"Time_top_7":  0,
+			"Time_top_8":  0,
+			"Time_top_9":  0,
+			"Time_top_10": 0,
+		}
+		procsTimeSort := []int{}
 		if collectionExist[SHOW_PROCESSLIST] {
 			var state string
 			reg := regexp.MustCompile("^(Table lock|Waiting for .*lock)$")
-			for _, value := range collectionInfo[SHOW_PROCESSLIST] {
-				if value == "" {
-					value = "none"
-				}
-				// MySQL 5.5 replaces the 'Locked' state with a variety of "Waiting for
-				// X lock" types of statuses.  Wrap these all back into "Locked" because
-				// we don't really care about the type of locking it is.
-				state = reg.ReplaceAllString(value, "locked")
-				state = strings.Replace(strings.ToLower(value), " ", "_", -1)
-				if _, ok := procsStateMap["State_"+state]; ok {
-					procsStateMap["State_"+state]++
+			for key, value := range collectionInfo[SHOW_PROCESSLIST] {
+				if strings.HasPrefix(key, SHOW_PROCESSLIST_STATE_PRE) {
+					if value == "" {
+						value = "none"
+					}
+					// MySQL 5.5 replaces the 'Locked' state with a variety of "Waiting for
+					// X lock" types of statuses.  Wrap these all back into "Locked" because
+					// we don't really care about the type of locking it is.
+					state = reg.ReplaceAllString(value, "locked")
+					state = strings.Replace(strings.ToLower(value), " ", "_", -1)
+					if _, ok := procsStateMap["State_"+state]; ok {
+						procsStateMap["State_"+state]++
+					} else {
+						procsStateMap["State_other"]++
+					}
+
+				} else if strings.HasPrefix(key, SHOW_PROCESSLIST_TIME_PRE) {
+					time, err := strconv.Atoi(value)
+					if nil != err {
+						log.Printf("show processlist: convert time %v error %v\n", value, err)
+					}
+					procsTimeSort = append(procsTimeSort, time)
 				} else {
-					procsStateMap["State_other"]++
+					log.Printf("show processlist: unexpect show processlist pre key %v\n", key)
 				}
+
 			}
 		}
+
+		sort.Sort(sort.Reverse(sort.IntSlice(procsTimeSort)))
+		for i, t := range procsTimeSort {
+			if _, ok := procsTimeMap["Time_top_"+strconv.Itoa(i+1)]; ok {
+				procsTimeMap["Time_top_"+strconv.Itoa(i+1)] = int64(t)
+			}
+		}
+
 		intMapAdd(stat, procsStateMap)
+		intMapAdd(stat, procsTimeMap)
 	}
 
 	if value, ok := collectionInfo[SHOW_INNODB_STATUS]["innodb_status_text"]; ok {
@@ -581,6 +623,16 @@ func print(result map[string]string, fp *os.File) {
 		"State_writing_to_net",
 		"State_none",
 		"State_other",
+		"Time_top_1",
+		"Time_top_2",
+		"Time_top_3",
+		"Time_top_4",
+		"Time_top_5",
+		"Time_top_6",
+		"Time_top_7",
+		"Time_top_8",
+		"Time_top_9",
+		"Time_top_10",
 		"Handler_commit",
 		"Handler_delete",
 		"Handler_discover",
@@ -854,6 +906,27 @@ func collectAllRowsAsMapValue(preKey string, valueColName string, db *sql.DB, qu
 			return result
 		}
 		result[preKey+strconv.Itoa(i)] = mp[valueColName]
+	}
+	return result
+}
+
+// collect multi column value as mapValue in all rows
+func collectMultiColumnAllRowsAsMapValue(preKeys []string, valueColNames []string, db *sql.DB, querys ...string) map[string]string {
+	result := make(map[string]string)
+	if len(preKeys) != len(valueColNames) {
+		log.Printf("collectMultiColumnAllRowsAsMapValue:prekey length is not match with valueColName length\n")
+		return result
+	}
+	for i, mp := range tryQueryIfAvailable(db, querys...) {
+		mp = changeKeyCase(mp)
+		for j, preKey := range preKeys {
+			valueColName := valueColNames[j]
+			if _, ok := mp[valueColName]; !ok {
+				log.Printf("collectMultiColumnAllRowsAsMapValue:Couldn't get %s from %s\n", valueColName, querys)
+				return result
+			}
+			result[preKey+strconv.Itoa(i)] = mp[valueColName]
+		}
 	}
 	return result
 }
