@@ -1,4 +1,4 @@
-#actiontech zabbix mysql monitor
+# actiontech zabbix mysql monitor
 
 percona monitoring plugins zabbix的go语言版本
 
@@ -176,8 +176,8 @@ relay_log_space: 取所有通道的relay_log_space的和
 
 ## 7. 所有item及其出处列表
 
-| item名         | 相关出处 |
-| ------------- | -----| 
+| item名         | 相关出处 | 引入版本(默认1.0) |
+| ------------- | -----|  -----| 
 |		Key_read_requests|          SHOW /*!50002 GLOBAL */ STATUS|
 |		Key_reads|                  SHOW /*!50002 GLOBAL */ STATUS|
 |		Key_write_requests|         SHOW /*!50002 GLOBAL */ STATUS|
@@ -304,6 +304,16 @@ relay_log_space: 取所有通道的relay_log_space的和
 |		State_writing_to_net|       SHOW PROCESSLIST|
 |		State_none|                 SHOW PROCESSLIST|
 |		State_other|                SHOW PROCESSLIST|
+|		Time_top_1|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_2|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_3|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_4|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_5|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_6|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_7|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_8|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_9|                 SHOW PROCESSLIST|1.1版本引入|
+|		Time_top_10|                SHOW PROCESSLIST|1.1版本引入|
 |		Handler_commit|             SHOW /*!50002 GLOBAL */ STATUS|
 |		Handler_delete|             SHOW /*!50002 GLOBAL */ STATUS|
 |		Handler_discover|           SHOW /*!50002 GLOBAL */ STATUS|
