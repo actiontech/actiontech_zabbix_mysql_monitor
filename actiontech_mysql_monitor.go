@@ -233,11 +233,18 @@ func collect() ([]bool, []map[string]string) {
 		log.Println("collectionInfo master : ", collectionInfo[SHOW_MASTER_LOGS])
 	}
 
-	// Get SHOW PROCESSLIST and aggregate it by state, sort by time
+	// Get SHOW PROCESSLIST and aggregate it by state, sort by time with filter
 	if *procs {
 		collectionExist[SHOW_PROCESSLIST] = true
-		collectionInfo[SHOW_PROCESSLIST] = collectMultiColumnAllRowsAsMapValue([]string{SHOW_PROCESSLIST_STATE_PRE, SHOW_PROCESSLIST_TIME_PRE},
-			[]string{"state", "time"}, db, "SHOW PROCESSLIST")
+		collectionInfo[SHOW_PROCESSLIST] = make(map[string]string)
+		stateCollection := collectMultiColumnAllRowsAsMapValue([]string{SHOW_PROCESSLIST_STATE_PRE},
+			[]string{"state"}, db, "SHOW PROCESSLIST")
+
+		timeCollection := collectMultiColumnAllRowsAsMapValue([]string{SHOW_PROCESSLIST_TIME_PRE},
+			[]string{"time"}, db, "SELECT time FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state NOT IN ('','sleep') AND user NOT IN ('root','repl') AND db != 'NULL'")
+		stringMapAdd(collectionInfo[SHOW_PROCESSLIST], stateCollection)
+		stringMapAdd(collectionInfo[SHOW_PROCESSLIST], timeCollection)
+
 		log.Println("collectionInfo show processlist:", collectionInfo[SHOW_PROCESSLIST])
 	}
 
