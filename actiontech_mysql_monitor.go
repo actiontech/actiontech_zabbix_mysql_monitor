@@ -726,6 +726,8 @@ func print(result map[string]string, fp *os.File) {
 		"query_rt1ms",
 		"query_rtavg",
 		"query_avgrt",
+		"read_only",
+		"server_id",
 	}
 
 	// Return the output.
