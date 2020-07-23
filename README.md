@@ -407,6 +407,12 @@ relay_log_space: 取所有通道的relay_log_space的和
 |       query_rt10ms| performance_schema.events_statements_summary_by_digest|
 |       query_rt1ms|performance_schema.events_statements_summary_by_digest|
 |       query_avgrt |performance_schema.events_statements_summary_by_digest|
+|       read_only |                 SHOW /*!50002 GLOBAL */ STATUS|
+|		server_id |                 SHOW VARIABLES|
+|       uncommitted_trx_duration_top_1 |information_schema.processlist and information_schema.innodb_trx|
+|       uncommitted_trx_duration_top_2 |information_schema.processlist and information_schema.innodb_trx|
+|       uncommitted_trx_duration_top_3 |information_schema.processlist and information_schema.innodb_trx|
+
 
 
 
