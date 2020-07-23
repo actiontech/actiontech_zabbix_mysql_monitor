@@ -27,12 +27,14 @@ const (
 	SHOW_INNODB_STATUS
 	SELECT_FROM_QUERY_RESPONSE_TIME_PERCONA
 	SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL
+	SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL
 )
 
 // pre key
 const (
-	SHOW_PROCESSLIST_STATE_PRE = "show_processlist_state_"
-	SHOW_PROCESSLIST_TIME_PRE  = "show_processlist_time_"
+	SHOW_PROCESSLIST_STATE_PRE                     = "show_processlist_state_"
+	SHOW_PROCESSLIST_TIME_PRE                      = "show_processlist_time_"
+	SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL_PRE = "select_from_uncommitted_trx_duration_"
 )
 
 var (
@@ -61,6 +63,7 @@ var (
 	procs             = flag.Bool("procs", true, "Whether to check SHOW PROCESSLIST")
 	getQrtPercona     = flag.Bool("get_qrt_percona", true, "Whether to get response times from Percona Server or MariaDB")
 	getQrtMysql       = flag.Bool("get_qrt_mysql", false, "Whether to get response times from MySQL (default: false)")
+	getUcTrxDurMysql  = flag.Bool("get_uctrx_dur_mysql", true, "Whether to get uncommitted transaction duration from MySQL (default: false)")
 	discoveryPort     = flag.Bool("discovery_port", false, "`discovery mysqld port`, print in json format (default: false)")
 	useSudo           = flag.Bool("sudo", true, "Use `sudo netstat...`")
 	version           = flag.Bool("version", false, "print version")
@@ -170,8 +173,8 @@ func collect() ([]bool, []map[string]string) {
 	}
 
 	// Collecting ...
-	collectionInfo := make([]map[string]string, 8)
-	collectionExist := []bool{true, true, false, false, false, false, false, false}
+	collectionInfo := make([]map[string]string, 9)
+	collectionExist := []bool{true, true, false, false, false, false, false, false, true}
 
 	collectionInfo[SHOW_STATUS] = collectAllRowsToMap("variable_name", "value", db, "SHOW /*!50002 GLOBAL */ STATUS")
 	collectionInfo[SHOW_VARIABLES] = collectAllRowsToMap("variable_name", "value", db, "SHOW VARIABLES")
@@ -283,6 +286,12 @@ SELECT 'query_rt100us', ifnull(sum(COUNT_STAR),0) as cnt FROM performance_schema
 
 		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectAllRowsToMap("rt", "cnt", db, query))
 		stringMapAdd(collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL], collectFirstRowAsMapValue("query_avgrt", "avgrt", db, "select round(avg(AVG_TIMER_WAIT)/1000/1000/1000,2) as avgrt from performance_schema.events_statements_summary_by_digest"))
+	}
+
+	if *getUcTrxDurMysql {
+		collectionExist[SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL] = true
+		collectionInfo[SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL] = collectMultiColumnAllRowsAsMapValue([]string{SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL_PRE}, []string{"time"}, db, "SELECT p.time FROM information_schema.innodb_trx t INNER JOIN information_schema.processlist p ON t.trx_mysql_thread_id = p.id WHERE t.trx_state = 'RUNNING' AND p.time > 10 AND p.command = 'Sleep'")
+		log.Println("collectionInfo uncommitted trx duration:", collectionInfo[SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL])
 	}
 
 	return collectionExist, collectionInfo
@@ -431,12 +440,7 @@ func parse(collectionExist []bool, collectionInfo []map[string]string) map[strin
 			}
 		}
 
-		sort.Sort(sort.Reverse(sort.IntSlice(procsTimeSort)))
-		for i, t := range procsTimeSort {
-			if _, ok := procsTimeMap["Time_top_"+strconv.Itoa(i+1)]; ok {
-				procsTimeMap["Time_top_"+strconv.Itoa(i+1)] = int64(t)
-			}
-		}
+		putTopInfoIntoMap("Time_top_", procsTimeSort, procsTimeMap)
 
 		intMapAdd(stat, procsStateMap)
 		intMapAdd(stat, procsTimeMap)
@@ -497,8 +501,37 @@ func parse(collectionExist []bool, collectionInfo []map[string]string) map[strin
 		stringMapAdd(stat, collectionInfo[SELECT_FROM_QUERY_RESPONSE_TIME_MYSQL])
 	}
 
+	if collectionExist[SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL] {
+		timeMap := map[string]int64{
+			"uncommitted_trx_duration_top_1": 0,
+			"uncommitted_trx_duration_top_2": 0,
+			"uncommitted_trx_duration_top_3": 0,
+		}
+
+		timeSort := []int{}
+		for _, value := range collectionInfo[SELECT_FROM_UNCOMMITTED_TRX_DURATION_MYSQL] {
+			time, err := strconv.Atoi(value)
+			if nil != err {
+				log.Printf("select from uncommitted transaction duration: convert time %v error %v\n", value, err)
+			}
+			timeSort = append(timeSort, time)
+		}
+
+		putTopInfoIntoMap("uncommitted_trx_duration_top_", timeSort, timeMap)
+		intMapAdd(stat, timeMap)
+	}
+
 	return stat
 
+}
+
+func putTopInfoIntoMap(keyPrefix string, srcInfo []int, targetMap map[string]int64) {
+	sort.Sort(sort.Reverse(sort.IntSlice(srcInfo)))
+	for i, t := range srcInfo {
+		if _, ok := targetMap[keyPrefix+strconv.Itoa(i+1)]; ok {
+			targetMap[keyPrefix+strconv.Itoa(i+1)] = int64(t)
+		}
+	}
 }
 
 func print(result map[string]string, fp *os.File) {
@@ -735,6 +768,9 @@ func print(result map[string]string, fp *os.File) {
 		"query_avgrt",
 		"read_only",
 		"server_id",
+		"uncommitted_trx_duration_top_1",
+		"uncommitted_trx_duration_top_2",
+		"uncommitted_trx_duration_top_3",
 	}
 
 	// Return the output.
