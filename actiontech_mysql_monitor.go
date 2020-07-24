@@ -63,7 +63,7 @@ var (
 	procs             = flag.Bool("procs", true, "Whether to check SHOW PROCESSLIST")
 	getQrtPercona     = flag.Bool("get_qrt_percona", true, "Whether to get response times from Percona Server or MariaDB")
 	getQrtMysql       = flag.Bool("get_qrt_mysql", false, "Whether to get response times from MySQL (default: false)")
-	getUcTrxDurMysql  = flag.Bool("get_uctrx_dur_mysql", true, "Whether to get uncommitted transaction duration from MySQL (default: false)")
+	getUcTrxDurMysql  = flag.Bool("get_uctrx_dur_mysql", true, "Whether to get uncommitted transaction duration from MySQL (default: true)")
 	discoveryPort     = flag.Bool("discovery_port", false, "`discovery mysqld port`, print in json format (default: false)")
 	useSudo           = flag.Bool("sudo", true, "Use `sudo netstat...`")
 	version           = flag.Bool("version", false, "print version")
@@ -174,7 +174,7 @@ func collect() ([]bool, []map[string]string) {
 
 	// Collecting ...
 	collectionInfo := make([]map[string]string, 9)
-	collectionExist := []bool{true, true, false, false, false, false, false, false, true}
+	collectionExist := []bool{true, true, false, false, false, false, false, false, false}
 
 	collectionInfo[SHOW_STATUS] = collectAllRowsToMap("variable_name", "value", db, "SHOW /*!50002 GLOBAL */ STATUS")
 	collectionInfo[SHOW_VARIABLES] = collectAllRowsToMap("variable_name", "value", db, "SHOW VARIABLES")
@@ -244,7 +244,7 @@ func collect() ([]bool, []map[string]string) {
 			[]string{"state"}, db, "SHOW PROCESSLIST")
 
 		timeCollection := collectMultiColumnAllRowsAsMapValue([]string{SHOW_PROCESSLIST_TIME_PRE},
-			[]string{"time"}, db, "SELECT time FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state NOT IN ('','sleep') AND user NOT IN ('root','repl') AND db != 'NULL'")
+			[]string{"time"}, db, "SELECT time FROM INFORMATION_SCHEMA.PROCESSLIST WHERE state NOT IN ('','sleep') AND user != 'root' AND db != 'NULL'")
 		stringMapAdd(collectionInfo[SHOW_PROCESSLIST], stateCollection)
 		stringMapAdd(collectionInfo[SHOW_PROCESSLIST], timeCollection)
 
