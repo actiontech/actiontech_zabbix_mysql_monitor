@@ -8502,7 +8502,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 1</description>
+                            <description>Process list time top 1 with filter</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -8544,7 +8544,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 2</description>
+                            <description>Process list time top 2 with filter</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -8586,7 +8586,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 3</description>
+                            <description>Process list time top 3 with filter</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -8601,16 +8601,16 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Process list time top 4 on $1</name>
+                            <name>MySQL read only on $1</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>MySQL.[{#MYSQLPORT},Time_top_4]</key>
+                            <key>MySQL.[{#MYSQLPORT},read_only]</key>
                             <delay>30s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>0</value_type>
+                            <value_type>4</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -8628,7 +8628,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 4</description>
+                            <description>MySQL read only</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -8643,16 +8643,16 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Process list time top 5 on $1</name>
+                            <name>MySQL server id on $1</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>MySQL.[{#MYSQLPORT},Time_top_5]</key>
+                            <key>MySQL.[{#MYSQLPORT},server_id]</key>
                             <delay>30s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>0</value_type>
+                            <value_type>3</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -8670,7 +8670,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 5</description>
+                            <description>MySQL server id</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -8685,16 +8685,16 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Process list time top 6 on $1</name>
+                            <name>MySQL uncommitted TRX duration top 1 on $1</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>MySQL.[{#MYSQLPORT},Time_top_6]</key>
+                            <key>MySQL.[{#MYSQLPORT},uncommitted_trx_duration_top_1]</key>
                             <delay>30s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>0</value_type>
+                            <value_type>3</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -8712,7 +8712,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 6</description>
+                            <description>MySQL uncommitted TRX duration top 1</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -8727,16 +8727,16 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Process list time top 7 on $1</name>
+                            <name>MySQL uncommitted TRX duration top 2 on $1</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>MySQL.[{#MYSQLPORT},Time_top_7]</key>
+                            <key>MySQL.[{#MYSQLPORT},uncommitted_trx_duration_top_2]</key>
                             <delay>30s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>0</value_type>
+                            <value_type>3</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -8754,7 +8754,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 7</description>
+                            <description>MySQL uncommitted TRX duration top 2</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -8769,16 +8769,16 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Process list time top 8 on $1</name>
+                            <name>MySQL uncommitted TRX duration top 3 on $1</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>MySQL.[{#MYSQLPORT},Time_top_8]</key>
+                            <key>MySQL.[{#MYSQLPORT},uncommitted_trx_duration_top_3]</key>
                             <delay>30s</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>0</value_type>
+                            <value_type>3</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -8796,91 +8796,7 @@
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Process list time top 8</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>MySQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Process list time top 9 on $1</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>MySQL.[{#MYSQLPORT},Time_top_9]</key>
-                            <delay>30s</delay>
-                            <history>90d</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Process list time top 9</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>MySQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Process list time top 10 on $1</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>MySQL.[{#MYSQLPORT},Time_top_10]</key>
-                            <delay>30s</delay>
-                            <history>90d</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Process list time top 10</description>
+                            <description>MySQL uncommitted TRX duration top 3</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
